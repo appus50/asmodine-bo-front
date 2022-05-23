@@ -1,0 +1,504 @@
+{% extends "AsmodineFrontBundle::layout.html.twig" %}
+
+{% block title %}{{ model.name|escape }}{% endblock %}
+{% block description %}{{ model.description|slice(0,320) }}{% endblock %}
+
+{% block meta %}
+    {{ parent() }}
+    <meta property="og:title" content="{{ model.name|escape }}" />
+    <meta property="og:description" content="{{ model.description }}" />
+    <meta property="og:url" content="{{ url('asmodinefront_products_model', {'id': model.id, 'productid': 'voir' }) }}" />
+    <meta property="og:image" content="{{ model.image }}" />
+    <meta property="og:type" content="website" />
+{% endblock %}
+
+{% block body %}
+    {% if category.icon is not null %}
+        {# Changement de background en fonction de la category #}
+        {#<style>
+            body {
+                background : url('/img/categories/icons/subcategories/{{ category.icon }}') center top no-repeat #edecec;
+                background-size: contain;
+            }
+        </style>#}
+    {% endif %}
+
+    {# TODO Replace link by tracking {{ path('tracking', {'product': product.seo.url}) }} #}
+    {% if seo_view %}
+        {% set redirect_url = product.url %}
+    {% else %}
+        {% set redirect_url = brand.iframe ? url('asmodinefront_asmotaille_index', { 'idModel': model.id, 'idProduct': product.id, 'idRecommand': recommanded_size_id}) : product.url %}
+    {% endif %}
+    {% set page_redirect = url('asmodinefront_page_redirection_brand',{'id': brand.id, 'redirect': redirect_url|url_encode, 'from': from_page} ) %}
+
+    <div class="container bloc-recherche">
+        <div class="row">
+            <div class="col-md-12 align-right">
+                <div class="champ-recherche">
+                    <form id="search-form" action="{{ path('asmodinefront_main_search') }}" method="post">
+                        <input name="search" class="banner-search-input" placeholder="{{ 'home.banner.search_placeholder'|trans }}" />
+                        <i class="banner-search-icon ion-search"></i>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section id="main" class="container product-view">
+        <div class="col-md-12">
+            <div class="col-md-12 top-part">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 breadcrumb">
+                        {% for elem in breadcrumb %}
+                            {% if loop.index0 > 0 %}I {% endif %}<a href="{{ elem.url }}">{{ elem.name }}</a>
+                        {% endfor %}
+                        I {{ model.name }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 content">
+                <div class="row">
+                    <div id="left-slider" class="col-md-2 col-sm-3 hidden-xs">
+                        {% set limit = 3 %}
+                        {% if images|length > limit %}
+                            <div class="arrow up">
+                                <i class="ion-ios-arrow-up"></i>
+                            </div>
+                        {% endif %}
+                        <div id="lightgallery" class="element-container">
+                            {% for image in images %}
+                                <a href="{{ image.link }}" class="element {% if images|length > 1 and loop.first %}golden{% endif %}">
+                                    <img src="{{ image.link }}" alt=""/>
+                                </a>
+                            {% endfor %}
+                        </div>
+                        {% if images|length > limit %}
+                            <div class="arrow down">
+                                <i class="ion-ios-arrow-down"></i>
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="product-image col-md-6 col-sm-5 col-xs-12">
+                        <div id="big-image">
+                     {#       <div class="social-networks social-product hidden-xs">
+                                <img src="{{ asset('img/socialnetwork/social_share.png') }}" alt="share"/>
+                                <a href="{{ asmodine_social.share.facebook ~ app.request.uri }}" target="_blank">
+                                    <img src="{{ asset('img/socialnetwork/facebook.png') }}" alt="Facebook"/>
+                                </a>
+                                <a href="{{ asmodine_social.share.pinterest ~ app.request.uri }}" target="_blank">
+                                    <img src="{{ asset('img/socialnetwork/pinterest.png') }}" alt="Pinterest"/>
+                                </a>
+                                <a href="{{ asmodine_social.share.twitter ~ app.request.uri }}" target="_blank">
+                                    <img src="{{ asset('img/socialnetwork/twitter.png') }}" alt="Twitter"/>
+                                </a>
+                                <a href="{{ asmodine_social.share.google ~ app.request.uri }}" target="_blank">
+                                    <img src="{{ asset('img/socialnetwork/google.png') }}" alt="Google"/>
+                                </a>
+                            </div>#}
+                            <img class="image" src="{{ model.image }}" alt="{{ model.name|escape }}" />
+                            <div class="row">
+                                <div class="morpho col-md-12">
+                                    {% if has_size_guide %}
+                                        <a data-toggle="modal" href="#asmoconseilModal">
+                                            <img src="{{ asset('img/conseil_morpho_on.png') }}" />
+                                        </a>
+                                    {% else %}
+                                        <img src="{{ asset('img/conseil_morpho_off.png') }}" />
+                                    {% endif %}
+                                </div>
+                                <div class="zoom">
+                                    <i class="ion-android-expand"></i>
+                                </div>
+                            </div>
+                        </div>
+                        {% if help %}
+                            {% if app.user %}
+                                <div class="row">
+                                    <table class="table table-striped table-condensed table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Note</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr><th scope="row">Size</th><td>{{ notes['_source']['note_size'] }}</td></tr>
+                                        <tr><th scope="row">Style</th><td>{{ style_note }}</td></tr>
+                                        <tr><th scope="row">Color</th><td>{{ color_note }}</td></tr>
+                                        <tr><th scope="row">Advice</th><td>{{ grade_product }}</td></tr>
+                                        <tr><th scope="row">Ranking</th><td>{{ notes['_source']['note_ranking'] }}</td></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <br /><br />
+                            {% endif %}
+                            {% for sizename, datas in help_sg %}
+                                <div class="row">
+                                    <table class="table table-striped table-condensed table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th scope="col"><strong>Taille : {{ sizename }}</strong></th>
+                                            <th scope="col">Min</th>
+                                            <th scope="col">Max</th>
+                                            {% if app.user %}
+                                                <th scope="col">User</th>
+                                                <th scope="col">Diff</th>
+                                            {% endif %}
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for sg in datas %}
+                                                <tr>
+                                                    <th scope="row">{{ sg.body_part }}</th>
+                                                    <td>{{ (sg.min/10)|round(1) }}</td>
+                                                    <td>{{ (sg.max/10)|round(1) }}</td>
+                                                    {% if app.user %}
+                                                        <td>{{ (sg.user/10)|round(1) }}</td>
+                                                        <td class="{{ sg.class }}"><strong>{% if sg.diff>0 %}+{% endif %}{{ (sg.diff/10)|round(1) }}</strong></td>
+                                                    {% endif %}
+                                                </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <hr />
+                            {% endfor %}
+
+                            <div class="row">
+                                <table class="table table-striped table-condensed table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col"><strong>Taille</strong></th>
+                                        <th scope="col">Couleur Marque</th>
+                                        <th scope="col">Couleur Filtre</th>
+                                        <th scope="col">Lien</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for i, datas_p in model.products %}
+                                            <tr>
+                                                <th scope="row">{{ datas_p.size }}</th>
+                                                <td>{{ datas_p.color }}</td>
+                                                <td>{{ datas_p.color_filter }}</td>
+                                                <td><a href="{{ datas_p.url }}" target="_blank">{{ datas_p.url }}</a></td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        {% endif %}
+                        {#  <div class="btn-add-wishlist">
+                          <a rel="nofollow"
+                               data-product-id="{{ product.id }}"
+                               data-toggle="modal"
+                               href=" {% if not app.user %}#loginModal{% elseif app.user.hasWishlist %}#wishlistModal{% else %}#wishlistAddModal{% endif %}"
+                               class="lien-wishlist" title="{{ 'add_to_wishlist'|trans }}">
+
+                                <i class="ion-heart"></i>
+                            </a>
+                        </div>#}
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-12">
+                        <div class="row">
+                            {% if brand.logo is not null %}
+                                <div class="product-img-brand col-md-12">
+                                    <a href="{{ url('asmodinefront_model_brand', {'slug': brand.slug}) }}">
+                                        <img style="max-width: 200px" class="brand" src="{{ brand.logo }}" alt="{{ brand.name }}" title="logo {{ brand.name }}"/>
+                                    </a>
+                                </div>
+                            {% else %}
+                                <div class="product-brand col-md-12">
+                                    {{ model.name }}
+                                </div>
+                            {% endif %}
+                            <div class="product-name col-md-12">
+                                <h1>{{ model.name }}</h1>
+                            </div>
+                            <div class="product-reseller col-md-12">
+                                {{ 'model.reseller'|trans }}{{ brand.name }}
+                            </div>
+                            <div class="product-shortdesc col-md-12">
+                                {{ model.description_short }}
+                            </div>
+                            <div class="product-rating vertical-align col-md-12">
+                               {# {% if reviews|length > 0 %}
+                                    <div class="star-rating">
+                                        {% for i in range(1, 5) %}
+                                            <a {% if review_average_note >= i %} class="active"{% endif %}><i class="ion-android-star"></i></a>
+                                        {% endfor %}
+                                    </div>
+                                    <div class="client-feedbacks">
+                                        <a href="#client-feedbacks"><span>{{ 'see_feedbacks'|trans }}</span> (<span class="review-number">{{ reviews|length }}</span>)</a>
+                                    </div>
+                                {% else %}
+                                    <div class="star-rating"></div>
+                                    <div class="client-feedbacks">
+                                        <a href="#new-review"><span>{{ 'Soyez le premier à donner votre avis'|trans }}</span></a>
+                                    </div>
+                                {% endif %} #}
+                            </div>
+                            <div class="product-prices col-md-12">
+                                {#  {% if product.discountType and product.discountAmount > 0 %}
+                                     <div class="discount">
+                                        {% if product.discountType == 'amount' %}
+                                             {{ product.discountAmount|localizedcurrency(product.currency) }}
+                                             {% set product_old_price = product.unitPrice + product.discountAmount %}
+                                         {% else %}
+                                             {{ '-' ~ product.discountAmount|number_format(0, ',') }}<sup>{{ '%' }}</sup>
+                                             {% set product_old_price = product.unitPrice / (1 - (product.discountAmount / 100))  %}
+                                         {% endif %}
+                                    </div>
+                                {% endif %}  #}
+                                <div class="prices">
+                                    {% if model.discount_old_price is not null and model.unit_price != model.discount_old_price %}
+                                        <div class="old">
+                                            {{ model.discount_old_price|currency(model.currency) }}
+                                        </div>
+                                    {% endif %}
+                                    <div class="current product-page-grade">
+                                        {% if model is defined  %}
+                                            {{ model.unit_price|currency(model.currency) }}
+                                        {% endif %}
+
+                                        {% if not seo_view %}
+                                            <div class="page-grade">
+                                                {% if grade_product >= 2.25 %}
+                                                    <div class="page-note-grade page-good-grade" data-toggle="modal" href="#asmoconseilModal">
+                                                        <div class="page-good-grade-icon"><i class="ion-heart"></i></div>
+                                                    </div>
+                                                {% elseif grade_product >= 1.87 %}
+                                                    <div class="page-note-grade page-medium-grade" data-toggle="modal" href="#asmoconseilModal">
+                                                        <div class="page-medium-grade-icon"><i class="ion-heart"></i></div>
+                                                    </div>
+                                                {% else %}
+                                                    <div class="page-note-grade page-bad-grade" data-toggle="modal" href="#asmoconseilModal">
+                                                        <div class="page-bad-grade-icon"><i class="ion-heart-broken"></i></div>
+                                                    </div>
+                                                {% endif %}
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-sizes col-md-12">
+                                {% if sizes|length > 0 %}
+                                    <div class="choose-size"><i class="ion-ruber"></i>{{ 'model.available_in'|trans }} :</div>
+                                    <div class="sizes">
+                                        {% for i, tmp_size in sizes %}
+                                            {% for size_val, size_url in tmp_size %}
+                                                {% if seo_view %}
+                                                    <span class="size_seo">{{ size_val }}</span>
+                                                {% elseif size_val == recommanded_size and size_val == current_size %}
+                                                    <a class="active show-asmoconseil bestof sg-color-{{ products_size_color[size_val] }}">{{ size_val }}</a>
+                                                {% else %}
+                                                    <a href="{{ size_url }}" class="{% if size_val == recommanded_size and size_val == current_size %}bestof{% endif %} {% if size_val == recommanded_size %}active{% elseif size_val == current_size %}current{% else %}other{% endif %} sg-color-{{ products_size_color[size_val] }}">{% if size_val == recommanded_size and size_val != current_size %}{# recommand by asmo #}{% endif %}{{ size_val }}</a>
+                                                {% endif %}
+                                            {% endfor %}
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                                {% if not seo_view %}
+                                    <div class="info-asmoconseil">
+                                        <i class="fa fa-info-circle"></i> Cliquer sur la taille pour avoir du conseil.
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div class="product-actions col-md-12">
+                                <a {% if not brand.iframe %} target="_blank" {% endif %} href="{{ page_redirect }}" class="w-100 m-b-10 btn cta2">{{ 'model.goto_asmotaille'|trans }} <span class="before-go-to-shop">|</span><i class="go-to-shop ion-arrow-right-a"></i></a>
+                                {#  <a rel="nofollow" href="{{ path('cart_add', {'product': product.id}) }}" class="w-100 m-b-10 btn cta3 tracking-link add-to-cart"><i class="i-add-cart-asmo fa fa-shopping-bag"></i>{{ 'model.add_to_cart'|trans }}</a> #}
+                                {% if help and brand.slug == 'grain-de-malice' %}
+                                    <a href="#" class="w-100 m-b-10 btn cta2" data-cylande_product-id="{{ model.model_id }}" id="cylande_ereservation" style="">Réserver en boutique <span class="before-go-to-shop">|</span><i class="go-to-shop ion-arrow-right-a"></i></a>
+                                {% endif %}
+                            </div>
+                            <div class="product-fulldesc col-md-12">
+                                {{ model.description }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            {# TODO
+            <div class="col-md-12 with-this-product">
+               <div class="row">
+                   <h2>
+                       {{ 'with_this_product'|trans }}
+                   </h2>
+               </div>
+               <div class="row vertical-align p-b-30">
+                   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                       <div class="row">
+                           {% for associated_product in associated_products %}
+                               <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                                   {% include ':_components:small_product.html.twig' with {'product': associated_product['product'], 'image': associated_product['image']} %}
+                               </div>
+                           {% endfor %}
+                       </div>
+                   </div>
+               </div>
+               <div class="row text-center">
+                   {% set slug_category = get_slug_category_product(product) %}
+                   {% if slug_category is not empty  %}
+                       <a href="{{ path('products', {'slug': slug_category}) }}" class="btn cta1">{{ 'see_more'|trans }}</a>
+                   {% endif %}
+               </div>
+           </div>
+          {% if history_products %}
+               <div class="col-md-12 history">
+                   <div class="row">
+                       <h2>
+                           {{ 'history_articles'|trans }}
+                       </h2>
+                   </div>
+                   <div class="row">
+                       {% for history_product in history_products %}
+                           <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                               {% include ':_components:small_product.html.twig' with {'product': history_product['product'], 'image': history_product['image']} %}
+                           </div>
+                       {% endfor %}
+                   </div>
+               </div>
+           {% endif %}
+
+           {{ render(controller('AppBundle:Review:index', {'product_id': product})) }}
+           #}
+        </div>
+    </section>
+
+    {# ASMOCONSEIL #}
+    {% if not seo_view %}
+        <div class="modal fade" id="asmoconseilModal" data-original-content="{#{ path('wishlist_add') }#}" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">
+                            {{ 'model.asmoconseil'|trans }}
+                        </h4>
+                    </div>
+                    <div class="modal-body modal-full">
+                        <div class="zip-asmoconseil hidden-xs">
+                            <img src="{{ asset('/img/zip-asmoconseil.png') }}"/>
+                        </div>
+                        <div class="row advice-row">
+                            <div class="col-md-6 col-sm-6">
+                                <div class="img-asmoconseil hidden-xs">
+                                    <img class="image" src="{{ (images|first)['link'] }}" alt=""/>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-sm-6 advice-text">
+                                {% if recommanded_size|length > 0 %}
+                                    <div class="your-size">
+                                        {{ 'model.size_advice_your'|trans|nl2br }}<br/>
+                                        {% for d in sizes %}
+                                            {% if d[recommanded_size] is defined %}
+                                                <span><a href="{{ d[recommanded_size] }}">{{ recommanded_size }}</a></span>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+
+                                {% if grade_product >= 2.25 %}
+                                    <div class="good-grade">
+                                        <span>{{ 'model.good_for_you'|trans|nl2br }}</span>
+                                        <div class="good-grade-icon"><i class="ion-heart"></i></div>
+                                    </div>
+                                {% elseif grade_product >= 1.87 %}
+                                    <div class="medium-grade">
+                                        <span>{{ 'model.not_bad'|trans|nl2br }}</span>
+                                        <div class="medium-grade-icon"><i class="ion-heart"></i></div>
+                                    </div>
+                                {% else %}
+                                    <div class="bad-grade">
+                                        <span>{{ 'model.not_at_all'|trans|nl2br }}</span>
+                                        <div class="bad-grade-icon"><i class="ion-heart-broken"></i></div>
+                                    </div>
+                                {% endif %}
+                                <div class="advice-details">
+                                    {% if color_note > 0 %}
+                                        <p>{{ ('model.color_'~color_note)|trans({'%values%': product.color})|raw }}</p>
+                                    {% endif %}
+                                </div>
+                                <br />
+                                {% if advices_size|length %}
+                                    <div class="advice-sizes">
+                                        {% if recommanded_size != current_size %}
+                                            <p>&nbsp;</p>
+                                            <p>Pour la taille <strong>{{ current_size }}</strong> :</p>
+                                        {% endif %}
+                                        {% for advice_size in advices_size %}
+                                            <p>{{ advice_size|raw }}</p>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="row btn_ok_note">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <a {% if not brand.iframe %} target="_blank" {% endif %} href="{{ page_redirect }}" class="w-100 m-b-10 btn cta2">{{ 'model.goto_asmotaille'|trans }} <span class="before-go-to-shop"> la taille {{ current_size }} |</span><i class="go-to-shop ion-arrow-right-a"></i></a>
+                                {#<button data-dismiss="modal" href="#asmoconseilModal" class="col-md-12 col-sm-12 col-xs-12 btn btn-primary waves-effect">
+                                    {{ 'model.ok_note'|trans }}
+                                </button>#}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+    {# ASMOCONSEIL #}
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% javascripts '@asmodine_product_js' filter='?jsqueeze' output='js/asmodine.product.min.js' %}
+        <script src="{{ asset(asset_url) }}"></script>
+    {% endjavascripts %}
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
+            {% if not seo_view %}
+                {% if(current_size != recommanded_size) and recommanded_size != false %}
+                    jQuery('#asmoconseilModal').modal('show');
+                {% endif %}
+                jQuery("a.show-asmoconseil").click(function () {
+                    jQuery('#asmoconseilModal').modal('show');
+                });
+            {% endif %}
+            jQuery("#lightgallery").lightGallery({
+                thumbnail: true,
+                download: false,
+                enableDrag: false,
+                mousewheel: false
+            });
+            jQuery("#big-image img.image").click(function (event) {
+                if (event.target && event.target.currentSrc && event.srcElement && event.srcElement.currentSrc.search(/conseil_morpho_on/)) {
+                    return false;
+                }
+                jQuery('div#lightgallery a:first').click();
+            });
+        });
+        {% if help %}
+        {% if brand.slug == 'grain-de-malice' %}
+            var addressEresa        = 'http://' + 'demo-eretail.cylande.com' + '/javascripts/popup.js';
+            var cer                 = cer || [];
+            cer.push(['appKey', '90395a68127a62af50b908558b77e3d9']);
+            cer.push(['locale', 'fr_FR']);
+            cer.push(['image', '']);
+            cer.push(['articleid', '']);
+            (function (d, s, id) {
+                if (d.getElementById(id)) return;
+                var script_src      = d.createElement(s);
+                var j               = d.getElementsByTagName(s)[0];
+                script_src.id       = id;
+                script_src.async    = true;
+                script_src.src      = addressEresa;
+                j.parentNode.insertBefore(script_src, j);
+                $j = jQuery.noConflict();
+            })(document, 'script', 'cylandejs');
+        {% endif %}
+        {% endif %}
+    </script>
+{% endblock %}

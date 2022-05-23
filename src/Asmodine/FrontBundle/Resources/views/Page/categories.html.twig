@@ -1,0 +1,31 @@
+{% extends "AsmodineFrontBundle:Page:layout.html.twig" %}
+
+{% block content %}
+    {% spaceless %}
+        <div class="row" id="mobile-list-categories">
+        {% for gender_cat in cat_0 if gender_cat.enabled %}
+            <div class="col-md-6 col-sm-6 col-xs-6">
+            {% for category_inter in cat_1 if category_inter.backParentId == gender_cat.backId %}
+                <p class="mobile-cat1">{{ category_inter.name }} {{ gender_cat.name }}</p>
+                <ul class="mobile-cat2">
+                    {% for category_sub in cat_2 if category_sub.backParentId == category_inter.backId %}
+                        <li>
+                            <a href="{{ url('asmodinefront_model_category', {'path': category_sub.path}) }}">
+                                <div class="upload-icon category-icon">
+                                    {% if category_sub.icon %}
+                                        <img src="/img/categories/icons/subcategories/{{ category_sub.icon }}" alt="">
+                                    {% else %}
+                                        <i class="ion-tshirt"></i>
+                                    {% endif %}
+                                </div>
+                                <span>{{ category_sub.name|trim }}</span>
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endfor %}
+            </div>
+        {% endfor %}
+        </div>
+    {% endspaceless %}
+{% endblock %}

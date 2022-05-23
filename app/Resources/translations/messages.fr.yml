@@ -1,0 +1,65 @@
+asmodine:
+    title: 'Asmodine, la styliste digitale qui sublime votre morphologie'
+    description: 'Un grand choix de vêtements pour toutes les tailles et les morphologies. Du XS au 6XL, Asmodine vous propose une large sélection de vêtements homme et femme grande taille.'
+
+
+footer:
+    asmodine: Asmodine
+    brands: 'Le top des marques'
+    help_and_contact: 'aide & contact'
+    links:
+        blog: blog
+        brands: Marques
+        cgu: CGU
+        contact: contact
+        cookies: 'Politique des cookies'
+        faq: FAQ
+        jobs: recrutement
+        legal: 'mentions légales'
+        partners: partenaires
+        security: 'protection des données'
+        sellers: vendeurs
+        terms: 'conditions d''utilisation'
+    man: Homme
+    more:
+        brands: 'encore + de marques...'
+        categories: 'encore + de catégories...'
+    presentation: 'Ce qui manquait aux boutiques de mode en ligne jusqu’à aujourd’hui ? Pouvoir essayer, avant d’acheter, les articles sur votre silhouette : en fonction de tous les détails de votre morphologie... Et Asmodine est née ! Dans la boutique sur mesure Asmodine, vous êtes sûr(e) de trouver la taille qui vous va vraiment bien ! Avec Asmodine, faire vos achats en ligne devient encore plus facile qu’en boutique, un vrai bonheur !'
+    woman: Femme
+
+newsletter:
+    title: Newsletter
+    follow_us: Suivez Nous
+    placeholder: Adresse e-mail
+    register: Je m'inscris
+
+main:
+    ltie9: |
+        Votre navigateur n'est plus à jour !<br />
+        Merci de le mettre à jour ou d'utiliser un autre navigteur pour une expérience optimale :<br />
+        <a target="_blank" href="http://outdatedbrowser.com/fr">
+social:
+    blog:
+        name: Asmodine
+        url: http://blog.asmodine.com
+    facebook:
+        name: Facebook
+        url: https://www.facebook.com/asmodineFR/?ref=br_rs
+    pinterest:
+        name: Pinterest
+        url: https://www.pinterest.fr/asmodine_/
+    instagram:
+        name: Instagram
+        url: https://www.instagram.com/asmodine_/?hl=fr
+    twitter:
+        name: Twitter
+        url: https://twitter.com/Asmodine_
+    googleplus:
+        name: Google+
+        url: https://plus.google.com/101457628203873720219
+    youtube:
+        name: YouTube
+        url: https://www.youtube.com/channel/UCgUoYuNMIqHg7gcVDQiQBPQ
+    linkedin:
+        name: LinkedIn
+        url:  https://www.linkedin.com/company/asmodine/?originalSubdomain=fr

@@ -1,0 +1,236 @@
+{% block body_class %}user-creation{% endblock %}
+
+{% block body %}
+
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <div class="alert alert-{{ label }}">
+                        <p class="text-center"><strong style="font-size: large">{{ message }}</strong></p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        <hr>
+    {% endfor %}
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <div class="row">
+                <div class="col-md-2 col-sm-2">
+                    <p class="completed-profile">{{ 'user.profile_completed_at'|trans }}</p>
+                </div>
+                <div class="col-md-10 col-sm-10">
+                    <div class="w3-progress-container w3-round-xlarge">
+                        <div class="w3-progressbar w3-round-xlarge asmo-yellow" style="width:{{ profile_percent }}%">
+                            <div class="w3-center w3-text-white">{{ profile_percent }}%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+
+    {# USER FORM #}
+    <div class="col-md-12 col-sm-12 ">
+        <h4 class="title">{{ 'user.personnal_infos'|trans }}</h4>
+        {{ form_start(form_user, {'action': url('asmodinefront_user_profilefragment', {}, true), 'attr': {'id': 'edition_user', 'class': ''}}) }}
+        {{ form_errors(form_user) }}
+        <div class="row p-b-20">
+            <div class="col-md-3 col-sm-">
+                {{ form_label(form_user.lastname) }}
+                {{ form_errors(form_user.lastname) }}
+                {{ form_widget(form_user.lastname) }}
+            </div>
+            <div class="col-md-4 col-sm-4">
+                {{ form_label(form_user.firstname) }}
+                {{ form_errors(form_user.firstname) }}
+                {{ form_widget(form_user.firstname) }}
+            </div>
+            <div class="col-md-4 col-sm-4">
+                {{ form_label(form_user.birthdate) }}
+                {{ form_errors(form_user.birthdate) }}
+                {{ form_widget(form_user.birthdate) }}
+            </div>
+        </div>
+        <div class="row p-b-20">
+            <div class="col-md-3 col-sm-3">
+                {{ form_errors(form_user.email) }}
+                {{ form_widget(form_user.email) }}
+            </div>
+            <div class="col-md-3 col-sm-3">
+                {{ form_label(form_user.plainPassword.first) }}
+                {{ form_errors(form_user.plainPassword.first) }}
+                {{ form_widget(form_user.plainPassword.first) }}
+            </div>
+            <div class="col-md-3 col-sm-3">
+                {{ form_label(form_user.plainPassword.second) }}
+                {{ form_errors(form_user.plainPassword.second) }}
+                {{ form_widget(form_user.plainPassword.second) }}
+            </div>
+            <div class="col-md-3 col-sm-3">
+                {{ form_label(form_user.city) }}
+                {{ form_errors(form_user.city) }}
+                {{ form_widget(form_user.city) }}
+            </div>
+        </div>
+        <div class="row p-b-20">
+            <div class="col-md-1 col-sm-1">
+                <label style="display:inline" class="required">{{ 'form.user.gender'|trans }}</label>
+            </div>
+            <div class="col-md-4 col-sm-4">
+                {{ form_errors(form_user.gender) }}
+                {{ form_widget(form_user.gender) }}
+            </div>
+        </div>
+        {# TODO
+        <div class="row p-b-20">
+            <div class="col-md-1 col-sm-1">
+                <label style="display:inline" class="required">{{ 'form.user.newsletter'|trans }}</label>
+            </div>
+            <div class="col-md-6 col-sm-6">
+                {{ form_errors(form.newsletter) }}
+                {{ form_widget(form.newsletter) }}
+                {{ form_label(form.newsletter) }}
+            </div>
+        </div>#}
+        <div class="row p-b-20">
+            <div class="col-md-4 col-sm-6 center">
+                {{ form_end(form_user) }}
+            </div>
+        </div>
+        <hr>
+    </div>
+
+    <div class="clearfix"></div>
+
+    {# MORPHO FORM #}
+    {% set profile = app.user|current_profile %}
+    <div class="row">
+        <div class="col-md-12">
+            <h4 class="title m-l-15">{{ 'form.profile.title'|trans }}</h4>
+            <div class="col-md-6 morphologie">
+                <div class="block-header-grey">
+                    {{ 'form.profile.morphologie'|trans }}
+                </div>
+                {% if profile is not null and profile.morphoprofile is not null %}
+                    <div class="title p-15 m-t-15 m-b-15 b-2-y">
+                        {{ 'profile.morphoprofile.header'|trans ~ ' ' ~ profile.morphoprofile|upper }}
+                    </div>
+                    <div class="image">
+                        <img src="{{ asset('/img/profile/morpho/' ~ app.user.gender ~ '_' ~ profile.morphoprofile ~ '.jpg') }}" alt="{{ profile.morphoprofile|upper }}" />
+                    </div>
+                    <div class="description">
+                        {{ ('description_morpho.' ~ app.user.gender ~ '.' ~ profile.morphoprofile)|trans|raw }}
+                    </div>
+                {% else %}
+                    <p class="m-t-15">{{ 'form.profile.various.no_morphotype_yet'|trans }}</p>
+                    <a href="{{ url('asmodinefront_morpho_step', {}, true) }}" class="btn cta2 waves-effect m-t-15">
+                        {{ 'form.profile.various.create_morpho'|trans }}
+                    </a>
+                {% endif %}
+            </div>
+            {{ form_start(form_profile, {'action': url('asmodinefront_user_profilefragment', {}, true)}) }}
+            <div class="col-md-6 measure m-b-15 container">
+                <div class="row m-b-15">
+                    <div class="block-header-grey p-15 col-md-12">
+                        {{ 'form.profile.measures'|trans }}
+                    </div>
+                </div>
+
+                <div class="row p-15 content">
+                    <div class="col-md-6">
+                        <p class="head weight"><i></i>{{ 'form.profile.label.weight'|trans }}</p>
+                        <div class="col-md-12">
+                            {{ form_widget(form_profile.weight, {'attr': {'class' : 'form-control input-bordered'}}) }}
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <p class="head size"><i class="fa fa-arrows-v m-r-5"></i>{{ 'form.profile.label.height'|trans }}</p>
+                        <div class="col-md-12">
+                            {{ form_widget(form_profile.height, {'attr': {'class' : 'form-control input-bordered'}}) }}
+                        </div>
+                    </div>
+                </div>
+                {% if app.user.gender == 'female' %}
+                    {% set measures_steps = ['neck', 'shoulder', 'chest', 'bra', 'arm', 'armSpine', 'armTurn', 'wrist', 'waistTop', 'waist', 'waistBottom', 'waist2d', 'hip', 'hip2d', 'thigh', 'calf', 'insideLeg', 'legLength', 'head', 'footLength', 'footWidth'] %}
+                {% else %}
+                    {% set measures_steps = ['neck', 'shoulder', 'chest',        'arm', 'armSpine', 'armTurn', 'wrist', 'waistTop', 'waist', 'waistBottom', 'waist2d', 'hip', 'hip2d', 'thigh', 'calf', 'insideLeg', 'legLength', 'head', 'footLength', 'footWidth'] %}
+                {% endif %}
+                {% for measure in measures_steps %}
+                    <hr class="ergo" width="100%" >
+                    <div class="row">
+                        <div class="col-md-12 m-b-5">
+                            <p class="text-left">{{ loop.index ~ '/' ~ measures_steps|length ~ ' - ' ~ ('form.profile.label.' ~ measure)|trans }}</p>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            {{ form_widget(form_profile[measure], {'attr': {'class' : 'form-control input-bordered'}}) }}
+                        </div>
+                        <div class="col-md-6">
+                            <a href="{{ url('asmodinefront_morpho_step', {'mode': 'full', 'step': measure}, true) }}" class="tuto-link">
+                                <i class="circled yellow ion-ios-play"></i>
+                                {{ 'form.profile.various.see_tutorial'|trans  }}
+                            </a>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                {% endfor %}
+
+                <div class="row m-t-15">
+                    {{ form_widget(form_profile.submit_measure, {'attr': {'class' : 'w-100 btn cta2 waves-effect'}}) }}
+                </div>
+
+                <div class="row m-t-15">
+                    <a class="w-100 btn cta2 waves-effect" href="{{ url('asmodinefront_morpho_step', {'mode': 'full'}, true) }}">
+                        {{ 'form.profile.various.see_tutorial_all'|trans }} <i class="circled ion-ios-play"></i>
+                    </a>
+                </div>
+                <div class="morphotype">
+                    <div class="row">
+                        <div class="block-header-grey p-15 col-md-12">
+                            {{ 'form.profile.various.morphotype_my'|trans }}
+                        </div>
+                    </div>
+                    {% set color_steps = ['hair', 'eyes', 'skin'] %}
+                    {% if profile is not null and profile.morphotype is not null %}
+                        <div class="title p-15 m-t-15 m-b-15 b-2-y">
+                            {{ 'form.profile.various.morphotype_header'|trans ~ ' ' ~ profile.morphotype|capitalize }}
+                        </div>
+                        <div class="list row">
+                            {% for morphotype_color in color_steps %}
+                                <div class="element col-md-4 col-sm-4">
+                                    <div class="small-title">
+                                        {{ ('form.profile.label.' ~ morphotype_color)|trans }}
+                                    </div>
+                                    <div class="color-container {{ morphotype_color }} value {{ attribute(profile, morphotype_color) }}"></div>
+                                    <a class="tuto-link morphotype-toggle" data-toggle="step_{{ morphotype_color }}">{{ 'form.profile.various.modify'|trans }}</a>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <div>
+                            {% for morphotype_color in color_steps %}
+                                <div class="morphotype_step step_{{ morphotype_color }} hide" data-type="{{ morphotype_color }}">
+                                    {{ form_row(form_profile[morphotype_color]) }}
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <div class="row m-t-15">
+                            {{ form_widget(form_profile.submit_morphological, {'attr': {'class' : 'w-100 btn cta2 waves-effect'}}) }}
+                        </div>
+                    {% else %}
+                        <p class="m-t-15">{{ 'form.profile.various.no_morphotype_yet'|trans }}</p>
+                        <a href="{{ url('asmodinefront_morpho_step', {}, true) }}" class="btn cta2 waves-effect m-t-15">
+                            {{ 'form.profile.various.create_morpho'|trans }}
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+            {{ form_end(form_profile) }}
+        </div>
+    </div>
+{% endblock body %}

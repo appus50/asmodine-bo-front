@@ -1,0 +1,44 @@
+/.web-server-pid
+/app/config/parameters.yml
+/build/
+/phpunit.xml
+/var/*
+!/var/cache
+/var/cache/*
+!var/cache/.gitkeep
+!/var/logs
+/var/logs/*
+!var/logs/.gitkeep
+!/var/sessions
+/var/sessions/*
+!var/sessions/.gitkeep
+!/var/jwt
+/var/jwt/*
+!var/jwt/.gitkeep
+!var/SymfonyRequirements.php
+/vendor/
+/web/bundles/
+
+# JetBrains
+.idea
+*~
+
+# Divers
+.DS_Store
+
+# Dev
+tmp/
+*.tmp
+*.tmp.*
+
+# Suppression Temporaire
+bower_components/
+
+# Assetic
+/web/assetic/
+/web/js/
+/web/css/
+/web/files/*
+!/web/videos
+/web/videos*
+!/web/videos/.gitkeep

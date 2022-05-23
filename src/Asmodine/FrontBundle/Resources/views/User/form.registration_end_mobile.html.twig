@@ -1,0 +1,30 @@
+{% extends "AsmodineFrontBundle::layout.html.twig" %}
+
+
+{% block body_class %}{{ parent() }} user-creation{% endblock %}
+{% block title %}Asmodine : {{ 'user.account.create'|trans }}{% endblock %}
+{% block description %}Asmodine : {{ 'user.account.create'|trans }}{% endblock %}
+
+{% block body %}
+    <div class="m-t-120">
+        <div class="row">
+            <div class="col-md-10 col-md-push-1 text-center">
+                {% if activate|length > 5 %}
+                    <p class="center">{{ 'form.registration.success_application'|trans }}</p>
+                {% elseif success %}
+                    <p class="center">{{ 'form.registration.success'|trans }}</p>
+                {% else %}
+                    <p class="center">{{ 'form.registration.failure'|trans }}</p>
+                {% endif %}
+                <a href="{% if activate|length > 5 %}{{ activate }}{% else %}{{ url('asmodinefront_main_home') }}{% endif %}" class="col-md-12 btn cta2 btn-primary waves-effect">
+                    {% if activate|length > 5 %}
+                        {{ 'main.complete_profile'|trans }}
+                    {% else %}
+                        {{ 'main.ok'|trans }}
+                    {% endif %}
+                </a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

@@ -1,0 +1,34 @@
+{% spaceless %}
+    {% set route, params = app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge(app.request.query.all) %}
+    <div class="pagination">
+        {% if pagination.max > 1 %}
+            <ul>
+                {% if pagination.current > 1 %}
+                    <li aria-disabled="false" aria-selected="true">
+                        <a href="{{ path(route,params|merge({'page': 1})) }}"><i class="fa fa-angle-double-left"></i></a>
+                    </li>
+                    <li aria-disabled="false" aria-selected="true">
+                        <a href="{{ path(route,params|merge({'page': pagination.current - 1})) }}"><i class="fa fa-angle-left"></i></a>
+                    </li>
+                {% endif %}
+
+                {% for i in pagination.current - 3 .. pagination.current + 3 %}
+                    {% if i >= 1 and i <= pagination.max %}
+                        <li class="{% if i == pagination.current %}active{% endif %}" aria-disabled="false" aria-selected="true">
+                            <a href="{{ path(route,params|merge({'page': i })) }}">{{ i }}</a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+
+                {% if pagination.current < pagination.max %}
+                    <li aria-disabled="false" aria-selected="true">
+                        <a href="{{ path(route,params|merge({'page': pagination.current + 1})) }}"><i class="fa fa-angle-right"></i></a>
+                    </li>
+                    <li aria-disabled="false" aria-selected="true">
+                        <a href="{{ path(route,params|merge({'page': pagination.max})) }}"><i class="fa fa-angle-double-right"></i></a>
+                    </li>
+                {% endif %}
+            </ul>
+        {% endif %}
+    </div>
+{% endspaceless %}

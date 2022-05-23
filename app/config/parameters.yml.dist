@@ -1,0 +1,46 @@
+# This file is a "template" of what your parameters.yml file should look like
+# Set parameters here that may be different on each deployment target of the app, e.g. development, staging, production.
+# https://symfony.com/doc/current/best_practices/configuration.html#infrastructure-related-configuration
+parameters:
+    database_host: asmodine_front_mariadb
+    database_port: ~
+    database_name: symfony
+    database_user: root
+    database_password: ~
+
+    elasticsearch_host: asmodine_elasticsearch
+    elasticsearch_port: 9200
+    elasticsearch_username: elastica
+    elasticsearch_password: changeme
+
+    mailer_transport: smtp
+    mailer_host: asmodine_mailcatcher
+    mailer_user: ~
+    mailer_password: ~
+    mailer_port: 1025
+    mailer_sender_address: nepasrepondre@asmodine.com
+    mailer_sender_name: Asmodine
+    mailer_contact_address: contact@asmodine.com
+    # mailer_return_path_address: %mailer_sender_address%
+
+    # A secret key that's used to generate certain security-related tokens
+    secret: ThisTokenIsNotSoSecretChangeIt
+
+    ide: 'phpstorm://open?url=file://%%f&line=%%l'
+
+    locale: fr
+
+    google_analytics_id: UA-XXX
+    facebook_pixel_id: XXXXXXXXXXXXXXXXXXXXXXX
+
+    api_keys.server.back.key: QFCXKEFn4RV3waH7aUAjVFTKqsRL7MhxRZ39zEdd
+    api_keys.client_key: rRbad3rPpKazCZ4FQQ6Mmo9rvoWfqFL6hkrp7BJm
+    asmodine_front_url: http://localhost:8082
+    asmodine_back_url: 'http://asmodine_back_nginx:8080'
+
+    jwt_private_key_path: '%kernel.project_dir%/var/jwt/private.pem'
+    jwt_public_key_path: '%kernel.project_dir%/var/jwt/public.pem'
+    jwt_key_pass_phrase: youpassphrase
+    jwt_token_ttl: 3600
+
+    logger.level.asmodine_front: warning

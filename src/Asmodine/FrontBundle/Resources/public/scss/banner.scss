@@ -1,0 +1,86 @@
+@import "variables";
+
+// banner
+#banner {
+    background: url($background_url) center top;
+    -webkit-background-size: cover;
+    background-size: cover;
+
+    &.no-background {
+        background: none;
+    }
+
+    .container {
+        padding-top: 160px;
+        position: relative;
+
+        @media (max-width: 440px) {
+            padding-top: 240px;
+        }
+
+        h1 {
+            font-family: $oswald;
+            font-weight: 300;
+            font-size: 42px;
+            text-transform: uppercase;
+            color: $white;
+        }
+
+        .subtitle{
+            font-family: $oswald;
+            font-weight: 300;
+            font-size: 20px;
+            text-transform: uppercase;
+            color: $white;
+        }
+
+        .banner-search-input {
+            border: none;
+            padding: 10px 15px;
+            width: 100%;
+        }
+
+        .banner-search-icon {
+            position: absolute;
+            top: 4px;
+            right: 30px;
+            font-size: 22px;
+        }
+    }
+
+    .search {
+        padding-bottom: 90px;
+
+        .call-to-action {
+            z-index: 10;
+        }
+    }
+
+    .zipper {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 9;
+        max-width: 140px;
+        margin-bottom: -4px;
+
+        img {
+            width: 100%;
+        }
+    }
+
+    .icon-cat-home {
+        display: inline-block;
+        margin-right: 8px;
+
+        img {
+            vertical-align: inherit;
+            margin-bottom: 0px;
+        }
+    }
+
+    .libelle-cat-home {
+        display: inline-block;
+    }
+}

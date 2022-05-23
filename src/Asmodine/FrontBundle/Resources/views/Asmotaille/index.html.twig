@@ -1,0 +1,31 @@
+{% extends "AsmodineFrontBundle::layout.html.twig" %}
+
+{% block body_class %}asmotaille{% endblock %}
+
+{% block body %}
+    <div id="asmotaille-header" class="row asmoconseil-size">
+        <div class="container">
+            <div class="col-md-12">
+                <div id="before-asmotaille" class="pull-left hidden-xs"><a href="{{ url('asmodinefront_asmotaille_back') }}" data-toggle="tooltip" data-placement="bottom" title="Retour à votre sélection"><i class="fa fa-2x fa-long-arrow-left"></i></a></div>
+                <div id="know-your-size">
+                    {% if size %}
+                        {{ size }}
+                    {% else %}
+                        {% trans with {'%brand%': brand.name} %}asmotaille.know_size_on{% endtrans %}
+                        <a href="#subscriptionModal" data-toggle="modal" class="btn cta2 yellow-square">
+                            {{ 'asmotaille.register'|trans }}
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <section id="main" class="container container-iframe">
+        <iframe id="iframe" src="{{ iframe_src }}"></iframe>
+    </section>
+    <script>
+        var dont_reload_page = true;
+        var header = document.getElementById("header");
+        header.className += " black";
+    </script>
+{% endblock %}

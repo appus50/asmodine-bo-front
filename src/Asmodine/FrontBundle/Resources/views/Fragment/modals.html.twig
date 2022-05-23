@@ -1,0 +1,107 @@
+{% for id, modal in {
+    'wishlistAddModal':     { 'title': 'wishlist.new',                  'path': 'asmodinefront_wishlist_add' },
+    'subscriptionModal':    { 'title': 'user.account.create',           'path': 'asmodinefront_user_subscription' },
+    'preSubscriptionModal': { 'title': 'user.account.create_choice',    'path': 'asmodinefront_user_pre_subscription' },
+    'loginModal':           { 'title': 'fosuser.security.login.title',  'path': 'asmodinefront_fosuser_security_login' },
+    'resetModal':           { 'title': 'fosuser.security.login.title',  'path': 'asmodinefront_user_resetpassword' },
+    'autoProposalModal':    { 'title': 'user.account.proposal_create',  'path': 'asmodinefront_user_proposal' },
+    'tempModal':            { 'title': 'user.account.create_temp',      'path': 'asmodinefront_user_temp' },
+    'tempsubscriptionModal':{ 'title': 'user.account.create_temp',           'path': 'asmodinefront_user_tempsubscription' },
+    'endModal':             { 'title': 'user.account.create_temp_end',           'path': 'asmodinefront_user_end' },
+
+} %}
+    <div class="modal fade" id="{{ id }}" data-original-content="{{ url(modal.path, {}, true) }}" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">{{ modal.title|trans }}</h4>
+                </div>
+                <div class="modal-body">
+                    {{ render(url(modal.path, {}, true)) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+{#
+<div class="modal fade" id="activationModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">
+                    {{ 'subscription.title'|trans }}
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12 text-center m-b-20">
+                        <p class="center txt-black">{{ 'subscription.account_activated'|trans|nl2br }}</p>
+                        <p class="center">
+                            <a href="{{ path('asmodinefront_morpho_step') }}">
+                                <button href="#activationModal" class="btn btn-primary waves-effect">
+                                    {{ 'subscription.createProfileMorpho2'|trans }}
+                                </button>
+                            </a>
+                        </p>
+                        <p class="center txt-black p_activ_prefer">{{ 'subscription.account_activated_prefer'|trans }}</p>
+                        <p class="center">
+                            <button data-dismiss="modal" href="#activationModal" class="btn btn-dark btn-primary waves-effect">
+                                {{ 'subscription.start_shopping2'|trans }}
+                            </button>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="asmoconseilMorphoModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">
+                    {{ 'asmoconseil.title'|trans }}
+                </h4>
+            </div>
+            <div class="modal-body w-full">
+                <div class="row full">
+                    <div class="col-md-10 col-md-offset-1 text-center m-b-20">
+                        <p class="center txt-black">{{ 'asmoconseil.description'|trans|nl2br }}</p>
+                        {#<div class="col-md-6">
+                            <div class="morpho">
+                                <img class="model" src="{{ asset('img/test-swing.png') }}"/>
+                                <img class="zipette" src="{{ asset('img/conseil_morpho_on.png') }}" />
+                            </div>
+                            <p class="txt-black">{{ 'asmoconseil.shiny_zip'|trans|raw }}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="morpho">
+                                <img class="model" src="{{ asset('img/test-swing.png') }}"/>
+                                <img class="zipette" src="{{ asset('img/conseil_morpho_off.png') }}" />
+                            </div>
+                            <p class="txt-black">{{ 'asmoconseil.grey_zip'|trans|raw }}</p>
+                        </div>#}
+{#                    </div>
+                </div>
+                <div class="row full full2">
+                    <a href="{{ path('asmodinefront_morpho_step') }}">
+                        <button href="#asmoconseilMorphoModal" class="col-xs-12 col-sm-6 col-md-6 col-lg-6 btn btn-primary waves-effect">
+                            {{ 'subscription.createProfileMorpho2'|trans({}, 'user') }}
+                        </button>
+                    </a>
+                    <button data-dismiss="modal" href="#asmoconseilMorphoModal" class="col-xs-12 col-sm-6 col-md-6 col-lg-6 btn btn-dark btn-primary waves-effect">
+                        {{ 'subscription.start_shopping2'|trans({}, 'user') }}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+#}
+

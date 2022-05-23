@@ -1,0 +1,25 @@
+{% extends "AsmodineFrontBundle:Page:layout.html.twig" %}
+
+{% block content %}
+    <section id="main" class="container contact">
+        <div class="col-md-12 bg-white">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 breadcrumb">
+                {# { breabcrumbs.breadcrumb_contact } #}
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 title">
+                <div class="row text-center p-b-20">
+                    <h1>{{ 'page.contact.title'|trans }}</h1>
+                </div>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 question">
+                {{ 'page.contact.question'|trans }}
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 societe">
+                {{ 'page.contact.societe'|trans }}
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 info">
+                {{ 'page.contact.info'|trans|raw }}
+            </div>
+        </div>
+    </section>
+{% endblock %}

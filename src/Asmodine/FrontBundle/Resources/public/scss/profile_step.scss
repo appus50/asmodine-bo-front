@@ -1,0 +1,178 @@
+@import "variables";
+@import "globals";
+
+.input-bordered {
+    input[type="radio"] {
+    }
+}
+
+.profile-form {
+    .btn-dark {
+        background-color: $dark-grey;
+
+        &:hover {
+            background-color: $grey;
+        }
+    }
+
+    &.active {
+        display: block;
+    }
+
+    input {
+        padding-left: 10px !important;
+    }
+
+    input:not(:placeholder-shown):invalid, input.invalid {
+        border: 1px solid red;
+    }
+
+    input[type="radio"] {
+        cursor: pointer;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        outline: 0;
+        display: none;
+
+        &.bubble-choice {
+            & + label {
+                margin: 1px 5px;
+                border-radius: 50%;
+                border: 1px solid #dcddde;
+            }
+
+            & + label:after {
+                content: "O";
+                color: rgba(0, 0, 0, 0);
+                min-height: 40px;
+                min-width: 40px;
+                display: block;
+                line-height: 37px;
+                font-size: 23px;
+            }
+
+            &:checked + label:after {
+                content: "✓";
+                color: #fff;
+                text-align: center;
+                margin-left: -1px;
+                font-weight: bold;
+                margin-right: 1px;
+            }
+        }
+
+        &.bubble-choice {
+            &.skin {
+                &.very_light + label {
+                    background: $skin_very_light;
+                }
+
+                &.light + label {
+                    background: $skin_light;
+                }
+
+                &.pink + label {
+                    background: $skin_pink;
+                }
+
+                &.matte + label {
+                    background: $skin_matte;
+                }
+
+                &.dark + label {
+                    background: $skin_dark;
+                }
+
+                &.very_dark + label {
+                    background: $skin_very_dark;
+                }
+            }
+
+            &.eyes {
+                &.blue + label {
+                    background: $eyes_blue;
+                }
+
+                &.green_gray + label {
+                    background: $eyes_green_gray;
+                }
+
+                &.brown + label {
+                    background: $eyes_brown;
+                }
+
+                &.black + label {
+                    background: $eyes_black;
+                }
+            }
+
+            &.hair {
+                &.white + label {
+                    background: $hair_white;
+                }
+
+                &.white:checked + label:after {
+                    color: #000000;
+                }
+
+                &.blond + label {
+                    background: $hair_blond;
+                }
+
+                &.light_brown + label {
+                    background: $hair_light_brown;
+                }
+
+                &.honey + label {
+                    background: $hair_honey;
+                }
+
+                &.brown + label {
+                    background: $hair_brown;
+                }
+
+                &.black + label {
+                    background: $hair_black;
+                }
+            }
+        }
+    }
+}
+
+.form-control.none {
+    border: none;
+    background: none;
+}
+
+.icon-weight {
+    background: url($poids_picto_profil_url) no-repeat center bottom;
+    height: 20px;
+    width: 20px;
+    margin-right: 5px;
+    display: inline-block;
+}
+
+.chevron-icon:after, .chevron-icon:before {
+    display: inline-block;
+    font-family: "Ionicons";
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    text-rendering: auto;
+    line-height: 1;
+    margin-top: 3px;
+    -webkit-font-smoothing: antialiased;
+}
+
+.chevron-right:after {
+    content: "";
+    float: right;
+}
+
+.chevron-left:after {
+    content: "";
+    float: left;
+}

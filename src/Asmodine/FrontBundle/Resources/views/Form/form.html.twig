@@ -1,0 +1,15 @@
+{% block measure_length_widget %}
+    {%- set type = type|default('number') -%}
+    {{- block('form_widget') -}}
+{% endblock %}
+
+{% block measure_weight_widget %}
+    {%- set type = type|default('number') -%}
+    {{- block('form_widget') -}}
+{% endblock %}
+
+{% block number_widget %}
+    {%- set type = type|default('number') -%}
+    {% set value = value|replace({',': '.'}) %}
+    {{- block('form_widget') -}}
+{% endblock %}

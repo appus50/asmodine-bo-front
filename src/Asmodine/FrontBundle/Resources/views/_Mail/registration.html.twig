@@ -1,0 +1,18 @@
+{% extends 'AsmodineFrontBundle:_Mail:base.html.twig' %}
+
+{% block title %}
+    {{ 'email.registration.title'|trans({'%username%': user_firstname})|raw|upper }}
+{% endblock %}
+
+{% block content %}
+    {{ 'email.registration.content'|trans|raw }}
+{% endblock %}
+
+{% block link_html %}
+    <td style="border:2px solid #DBB15D;border-radius:0px;color:#DBB15D;cursor:auto;padding:10px 25px;" align="center" valign="middle" bgcolor="#ffffff">
+        <a href="{{ asmodine_front_url ~ path('asmodinefront_user_activate', {'id': user_id, 'token': token}) }}" style="display:inline-block;text-decoration:none;background:#ffffff;color:#DBB15D;font-family:Ubuntu, Helvetica, Arial, sans-serif;font-size:16px;font-weight:normal;margin:0px;" rel="noopener noreferrer" target="_blank">
+            {{ 'email.registration.link_text'|trans|raw }}
+        </a>
+    </td>
+{% endblock %}
+

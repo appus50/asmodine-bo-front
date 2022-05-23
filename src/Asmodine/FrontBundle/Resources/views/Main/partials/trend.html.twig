@@ -1,0 +1,13 @@
+{% set link = url('asmodinefront_model_category', {'path': trend.path }) %}
+<div class="trend-block {{ dimension }}">
+    <div>
+        <a href="{{ link }}">
+            <img src="{{ asset('/img/homepage/trend/' ~ trend.image) }}">
+        </a>
+    </div>
+    <div class="title p-t-30">
+        <a href="{{ link }}" class="btn cta1 waves-effect">
+            {{ trend.title }}
+        </a>
+    </div>
+</div>

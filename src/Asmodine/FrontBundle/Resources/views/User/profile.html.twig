@@ -1,0 +1,55 @@
+{% extends "::base.html.twig" %}
+
+{% block banner %}
+{% endblock %}
+
+{% block body_class %}{{ parent() }} user-creation{% endblock %}
+
+{% block body %}
+    <section id="main" class="container user">
+        <div class="col-md-12">
+            <div class="row presentation">
+                <div class="col-md-12">
+                    <div class="col-md-2 col-sm-2 col-xs-2 picture">
+                            <img class="brand" src="{{ app.user|image }}" alt="{{ 'profile.picture'|trans }}"/>
+                    </div>
+                    <div class="col-md-10 col-sm-10 col-xs-10 content">
+                        <h1>
+                            {{ app.user.firstname ~ ' ' ~ app.user.lastname }}
+                        </h1>
+                        {#<p id="description_update_field" class="col-md-12" contenteditable="true" data-action="{#{ path('user_change_description') }}">
+                            {{ app.user.description|trim|nl2br }}
+                        </p>
+                        <span id="modify-desc"><i class="ion-edit"></i> Modifier ma description</span>
+                        #}
+                    </div>
+                </div>
+            </div>
+            <div class="row onglets profile">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-12" >
+                            <div class="row onglet{% if tab=='profile' %} active{% endif %}" data-url="{{ url('asmodinefront_user_profilefragment', {}, true) }}">
+                                <div>
+                                    <i class="ion-android-person m-r-10"></i>
+                                </div>
+                                <div>
+                                    {{ 'profile.morpho_infos'|trans }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div id="page-content" class="row m-5">
+                <div class="col-md-12">
+                    {{ render_hinclude(url('asmodinefront_user_profilefragment', {}, true)) }}
+                </div>
+            </div>
+            <div id="profile-loader" class="col-md-12 hidden">{{ include('::hinclude.html.twig') }}</div>
+
+            {{ render_esi(url('asmodinefront_fragment_newsletter')) }}
+        </div>
+    </section>
+{% endblock %}

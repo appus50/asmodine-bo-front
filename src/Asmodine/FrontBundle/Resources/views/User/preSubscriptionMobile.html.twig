@@ -1,0 +1,50 @@
+{% extends "AsmodineFrontBundle::layout.html.twig" %}
+
+{% block body_class %}{{ parent() }} user-creation{% endblock %}
+
+{% block fullbody %}
+    {{ render_esi(url('asmodinefront_fragment_social')) }}
+    {{ include('@AsmodineFrontBundle/Fragment/header.html.twig') }}
+    <div class="m-t-120">
+        <div class="clearfix"></div>
+
+        <div class="row">
+            <div class="col-md-10 col-md-push-1 text-center m-b-20">
+                <h1>Comment souhaitez-vous créer votre profil Morpho ?</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-10 col-md-push-1 text-center m-b-20">
+                <p class="proposal">Vous avez 2 possibilités : </p>
+            </div>
+        </div>
+        <div class="row m-b-20 apps">
+            <div class="col-xs-6 text-center line-v">
+                <p>Créer votre profil morphologique<br />
+                    depuis votre smartphone avec notre application<br />
+                    <span class="a-color">Asmodine Body-scan</span>.<br />
+                    À la pointe de la technologie !</p>
+                <div class="row">
+                    <div class="col-xs-12"><a href="https://play.google.com/store/apps/details?id=com.pulpsoft.asmodine&hl=en_US" target="_blank"><img src="{{ '/img/store/google.png' }}"></a></div>
+                    <div class="col-xs-12 m-t-20"><a href="https://itunes.apple.com/PL/app/id1397344172?mt=8" target="_blank"><img src="{{ '/img/store/apple.png' }}"></a></div>
+                </div>
+            </div>
+            <div class="col-xs-6 text-center">
+                <p>Créer votre profil morphologique<br />manuellement avec un mètre ruban.</p>
+                <p>Vous pourrez en télécharger un plus loin.</p>
+                <p><a class="btn hidden-sm cta2 w-100 p-5" href="{{ url('asmodinefront_user_subscription_mobile') }}">
+                        Continuer
+                    </a></p>
+            </div>
+        </div>
+    </div>
+
+
+    </div>
+
+    <!-- Older IE warning message -->
+    <!--[if lt IE 9]>
+    <p>{{ 'main.ltie9'|trans }}</p>
+    <![endif]-->
+{% endblock %}

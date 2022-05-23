@@ -1,0 +1,21 @@
+<div class="row">
+    <div class="col-md-10 col-md-push-1 text-center m-b-20">
+        {% if activate|length > 5 %}
+            <p class="center">{{ 'form.registration.success_application'|trans }}</p>
+        {% elseif success %}
+            <p class="center">{{ 'form.registration.success'|trans }}</p>
+        {% else %}
+            <p class="center">{{ 'form.registration.failure'|trans }}</p>
+        {% endif %}
+        {% if activate|length > 5 %}
+            <a href="{{ activate }}" class="col-md-12 btn cta2 btn-primary waves-effect">
+                {{ 'main.complete_profile'|trans }}
+            </a>
+        {% else %}
+            <button data-dismiss="modal" href="#subscriptionModal" class="col-md-12 btn btn-primary waves-effect">
+                {{ 'main.ok'|trans }}
+            </button>
+        {% endif %}
+        </button>
+    </div>
+</div>

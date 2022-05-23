@@ -1,0 +1,77 @@
+{% extends "AsmodineFrontBundle::layout.html.twig" %}
+
+{% block body_class %}{{ parent() }} user-creation{% endblock %}
+
+{% block body %}
+    {% if form_popup %}
+        {% include 'AsmodineFrontBundle:Morpho:step_popup.html.twig' %}
+    {% endif %}
+    <div class="measurement-banner-form">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-push-3">
+                    <h2>{{ 'profile.step.title'|trans }}</h2>
+                    <p>{{ 'profile.step.video'|trans({'%nb%': nb_step - current_step_position}) }}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-md-push-3">
+                    <h4 class="step-number">
+                        {{ 'profile.step.label'|trans }} <span class="current-step">{{ current_step_position + 1 }}</span>/
+                        <span class="last-step">{{ nb_step }}</span> -
+                        <span>{{ ('profile.step.title_measure.' ~ current_step)|trans }}</span>
+                    </h4>
+                </div>
+            </div>
+            <div class="row p-t-30">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-6 col-md-offset-3 m-b-15">
+                            {% if video %}
+                                <video controls class="w-100">
+                                    <source src="{{ asset(video) }}" type="video/mp4">
+                                </video>
+                            {% elseif image %}
+                                <img src="{{ image }}" class="w-100 img-responsive" />
+                            {% endif %}
+                        </div>
+                    </div>
+                    <form action="https://{{ app.request.httpHost ~ app.request.requestUri }}" method="post" class="profile-form">
+                        <div class="row">
+                            <div class="col-md-4 {% if current_step not in ['hair', 'eyes', 'skin'] %}col-xs-4 col-xs-offset-4{% else %}col-xs-12{% endif %} col-md-offset-4 input-group form-group">
+                                {{ form_errors(form.value) }}
+                                {{ form_widget(form.value) }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 p-l-0 p-r-0">
+                                {% if previous_step %}
+                                    <a href="{{ previous_step }}" class="btn cta2 btn-dark w-100 waves-effect secondary chevron-icon chevron-left">
+                                        <span>{{ 'profile.step.previous_step'|trans }}</span>
+                                    </a>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-6 p-l-0 p-r-0 profile-form">
+                                {{ form_widget(form.submit, {attr: {'class' : 'btn cta2 w-100 waves-effect chevron-icon chevron-right'}}) }}
+                            </div>
+                        </div>
+                        {{ form_end(form) }}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% if form_popup %}
+        <script type="text/javascript">
+            jQuery(document).ready(function() {
+                if (jQuery(window).width() < 768) {
+                    window.location.href = "{{ path('asmodinefront_morpho_mobilefirststep', {'mode': (light?'light':'full')}) }}";
+                }
+            });
+        </script>
+    {% endif %}
+{% endblock %}

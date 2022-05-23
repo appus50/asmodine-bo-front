@@ -1,0 +1,73 @@
+{% extends "AsmodineFrontBundle::layout.html.twig" %}
+
+{% block title %}Asmodine : {{ 'fosuser.security.login.title'|trans }}{% endblock %}
+{% block description %}Asmodine : {{ 'fosuser.security.login.title'|trans }}{% endblock %}
+
+{% block body_class %}{{ parent() }} user-creation{% endblock %}
+
+{% block fullbody %}
+    {{ render_esi(url('asmodinefront_fragment_social')) }}
+    {{ include('@AsmodineFrontBundle/Fragment/header.html.twig') }}
+    <div class="m-t-120">
+        {% if error %}
+            <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+
+        <div class="clearfix"></div>
+        <form action="{{ url("fos_user_security_check", {}, true) }}" method="post" role="form" id="dontpopin">
+            <div class="row">
+                <div class="col-md-10 col-md-push-1 text-center m-b-20">
+                    <div class="small-container">
+                        <div class="input-group form-group input-bordered">
+                            <span class="input-group-addon">
+                                <i class="fa fa-envelope size12"></i>
+                            </span>
+                            <div>
+                                <input class="form-control" value="{{ last_username }}" id="exampleInputEmail1" placeholder="{{ 'security.login.name'|trans }}" type="text" name="_username">
+                            </div>
+                        </div>
+                        <div class="input-group form-group input-bordered">
+                            <span class="input-group-addon">
+                                <i class="ion-android-lock"></i>
+                            </span>
+                            <div>
+                                <input class="form-control" id="exampleInputPassword1" placeholder="{{ 'security.login.password'|trans }}" type="password" name="_password">
+                            </div>
+                        </div>
+                        <a class="reset-password" href="{{ url("asmodinefront_user_resetpassword", {}, true) }}">
+                            {{ 'security.login.forgotten-password'|trans }}
+                        </a>
+                    </div>
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row full center-block">
+                <div class="col-md-12">
+                    {#<button type="submit" name="_submit" class="col-xs-12 col-sm-6 col-md-6 col-lg-6 btn btn-primary waves-effect">#}
+                    <button type="submit" name="_submit" class="col-md-12 btn btn-primary cta2 waves-effect">
+                        {{ 'security.login.submit'|trans }}
+                    </button>
+                    {#<button disabled="disabled" id="facebook-login" class="col-xs-12 col-sm-6 col-md-6 col-lg-6 btn btn-primary waves-effect facebook">
+                        <i class="ion-social-facebook"></i>
+                        {{ 'security.login.facebook-connect'|trans }}
+                    </button>#}
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="row">
+                <div class="col-md-12 text-center m-t-20">
+                    <p>
+                        {{ 'security.login.no-account'|trans }}
+                        <a href="{{ url('asmodinefront_user_subscription_mobile') }}" class="majuscule">{{ 'security.login.register-now'|trans }}</a>
+                    </p>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Older IE warning message -->
+    <!--[if lt IE 9]>
+    <p>{{ 'main.ltie9'|trans }}</p>
+    <![endif]-->
+{% endblock %}

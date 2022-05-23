@@ -1,0 +1,152 @@
+@import "variables";
+
+#client-feedbacks {
+    .tab-content {
+        padding-top: 0;
+    }
+
+    #review-tabs {
+        li {
+            &.active {
+                a {
+                    background-color: $light-grey;
+                }
+            }
+        }
+    }
+
+    #new-review {
+        .lines {
+            padding: 15px;
+        }
+    }
+
+    form {
+        font-family: Oswald, sans-serif;
+        text-transform: uppercase;
+
+        button[type=submit] {
+            background-color: black;
+        }
+
+        div.block {
+            margin: 10px 0;
+        }
+
+        input {
+            text-transform: uppercase;
+            padding: 5px;
+            border: none;
+
+            &.title {
+                margin-bottom: 15px;
+            }
+        }
+
+        textarea {
+            border: none;
+            min-height: 100px;
+            text-transform: uppercase;
+        }
+
+        .inline {
+            display: inline-block;
+        }
+
+        span {
+            display: inline-block;
+        }
+
+        .review_note {
+            display: inline-block;
+            margin-left: 15px;
+            margin-top: 20px;
+        }
+    }
+
+    margin-bottom: 60px;
+
+    .links {
+        display: flex;
+
+        a {
+            font-size: 20px;
+            font-family: $oswald;
+            font-weight: 300;
+            display: inline-block;
+            padding: 10px 38px;
+            background: $grey;
+            color: $black;
+            text-transform: uppercase;
+
+            &:hover, &.active {
+                background: $light-grey;
+            }
+        }
+    }
+
+    .lines {
+        background: $light-grey;
+
+        a {
+            i {
+                color: $yellow;
+            }
+        }
+
+        img {
+            &.photo {
+                width: 65px;
+            }
+        }
+
+        .notice-button {
+            font-size: 20px;
+            color: $yellow;
+            margin: 0 5px;
+        }
+
+        .name-and-votes {
+            div {
+                display: inline-table;
+
+                &.name {
+                    margin-right: 10px;
+                    font-family: $roboto_condensed;
+                    font-weight: 400;
+                    font-size: 15px;
+                    color: $grey;
+                }
+
+                &.votes {
+                    a {
+                        font-size: 20px;
+                        color: $white;
+
+                        &.active {
+                            color: $yellow;
+                        }
+                    }
+                }
+            }
+        }
+
+        .date {
+            color: $grey;
+            font-family: $roboto_condensed;
+            font-size: 12px;
+            font-weight: 400;
+        }
+
+        .title {
+            color: $dark-grey;
+        }
+
+        .message {
+            font-weight: 400;
+            font-style: italic;
+            color: $dark-grey;
+            font-size: 12px;
+        }
+    }
+}

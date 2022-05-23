@@ -1,0 +1,12 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+    <section id="login-page" class="container login margin-header">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 title">
+            <div class="row text-center p-b-20">
+                <h1>{{ 'fosuser.security.login.title'|trans }}</h1>
+            </div>
+        </div>
+        {{ render(url('asmodinefront_fosuser_security_login', {}, true)) }}
+    </section>
+{% endblock %}

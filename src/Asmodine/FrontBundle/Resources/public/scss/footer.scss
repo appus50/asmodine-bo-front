@@ -1,0 +1,73 @@
+@import "variables";
+
+// footer
+#footer {
+    display: table;
+    background: $black;
+    color: $white;
+    font-family: $roboto_condensed;
+    font-size: 13px;
+    padding-top: 7px;
+    padding-bottom: 2px;
+    position: relative;
+    bottom: inherit;
+    height: auto;
+
+    .left-block {
+        text-align: left;
+    }
+
+    .right-block {
+        text-align: right;
+
+        @media (max-width: 992px) {
+            text-align: left;
+        }
+    }
+
+    .title {
+        font-family: $oswald;
+        font-weight: 400;
+        font-size: 18px;
+        text-transform: uppercase;
+        padding-bottom: 35px;
+        padding-top: 35px;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+
+        li {
+            text-transform: capitalize;
+
+            a {
+                color: $white;
+
+                &:hover {
+                    color: $yellow;
+                }
+            }
+        }
+    }
+
+    .social {
+        padding: 10px 0;
+
+        a {
+            height: $social_icon_size;
+            display: inline-block;
+            width: $social_icon_size;
+            border-radius: 50%;
+            background: $white;
+            font-size: 20px;
+            line-height: $social_icon_size;
+            color: $black;
+            margin: 0 3px;
+
+            &:hover {
+                background: $yellow;
+            }
+        }
+    }
+}

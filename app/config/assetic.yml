@@ -1,0 +1,96 @@
+assetic:
+    debug: '%kernel.debug%'
+    use_controller: '%kernel.debug%'
+    filters:
+        cssrewrite: ~
+        jsqueeze:   ~
+        scssphp:
+            formatter: 'Leafo\ScssPhp\Formatter\Compressed'
+    assets:
+        thirdparty_css:
+            # output='css/asmodine.vendors.min.css'
+            inputs:
+                - '@AsmodineFrontBundle/Resources/public/thirdparty/css/w3.css'
+                - '@AsmodineFrontBundle/Resources/public/thirdparty/css/animate.css'
+                - '@AsmodineFrontBundle/Resources/public/thirdparty/scss/asmodine.loader.scss'
+                - '@AsmodineFrontBundle/Resources/public/thirdparty/css/awesome-bootstrap-checkbox.css'
+                - '@AsmodineFrontBundle/Resources/public/thirdparty/css/jquery.mCustomScrollbar.min.css'
+                - '@AsmodineFrontBundle/Resources/public/thirdparty/css/sweet-alert.css'
+                - '@AsmodineFrontBundle/Resources/public/thirdparty/css/material-design-iconic-font.css'
+                - '@AsmodineFrontBundle/Resources/public/thirdparty/css/jquery.bootgrid.min.css'
+                - '@AsmodineFrontBundle/Resources/public/thirdparty/css/lightgallery.css'
+                # - '@AsmodineFrontBundle/Resources/public/thirdparty/css/flexboxgrid.min.css'
+            filters:
+                - cssrewrite
+                - scssphp
+        asmodine_scss:
+            # output='css/asmodine.base.min.css' %}
+            inputs:
+                - '@AsmodineFrontBundle/Resources/public/scss/asmotaille.scss'
+                - '@AsmodineFrontBundle/Resources/public/scss/pages.scss'
+                - '@AsmodineFrontBundle/Resources/public/scss/globals.scss'
+                - '@AsmodineFrontBundle/Resources/public/scss/index.scss'
+                - '@AsmodineFrontBundle/Resources/public/scss/hinclude.scss'
+                - '@AsmodineFrontBundle/Resources/public/scss/main.scss'
+                - '@AsmodineFrontBundle/Resources/public/scss/product.scss'
+                - '@AsmodineFrontBundle/Resources/public/scss/profile_step.scss'
+                - '@AsmodineFrontBundle/Resources/public/scss/user.scss'
+                - '@AsmodineFrontBundle/Resources/public/scss/banner.scss'
+                - '@AsmodineFrontBundle/Resources/public/scss/footer.scss'
+                - '@AsmodineFrontBundle/Resources/public/scss/header.scss'
+                - '@AsmodineFrontBundle/Resources/public/scss/login.scss'
+                - '@AsmodineFrontBundle/Resources/public/scss/menu.scss'
+                - '@AsmodineFrontBundle/Resources/public/scss/products.scss'
+                - '@AsmodineFrontBundle/Resources/public/scss/review.scss'
+                - '@AsmodineFrontBundle/Resources/public/scss/variables.scss'
+            filters:
+                - cssrewrite
+                - scssphp
+        asmodine_css:
+            # output='css/asmodine.app.min.css'
+            inputs:
+                - '@AsmodineFrontBundle/Resources/public/css/app.css'
+            filters:
+                - cssrewrite
+
+        thirdparty_js:
+            # output='css/asmodine.vendors.min.js'
+            inputs:
+                - '@AsmodineFrontBundle/Resources/public/thirdparty/js/jquery.min.js'
+                - '@AsmodineFrontBundle/Resources/public/thirdparty/js/bootstrap.min.js'
+                - '@AsmodineFrontBundle/Resources/public/thirdparty/js/hinclude.js'
+
+                - '@AsmodineFrontBundle/Resources/public/thirdparty/js/jquery.scrollUp.js'
+                - '@AsmodineFrontBundle/Resources/public/thirdparty/js/jquery.mCustomScrollbar.concat.min.js'
+                - '@AsmodineFrontBundle/Resources/public/thirdparty/js/jquery.bootgrid.min.js'
+                - '@AsmodineFrontBundle/Resources/public/thirdparty/js/waves.js'
+                - '@AsmodineFrontBundle/Resources/public/thirdparty/js/jquery.bootstrap-growl.min.js'
+                - '@AsmodineFrontBundle/Resources/public/thirdparty/js/sweet-alert.js'
+                - '@AsmodineFrontBundle/Resources/public/thirdparty/js/jquery.nicescroll.js'
+                - '@AsmodineFrontBundle/Resources/public/thirdparty/js/slick.min.js'
+                - '@AsmodineFrontBundle/Resources/public/thirdparty/js/jquery.star-rating-svg.js'
+
+        asmodine_js:
+            # output='css/asmodine.base.min.js'
+            inputs:
+                - '@AsmodineFrontBundle/Resources/public/js/header.js'
+                - '@AsmodineFrontBundle/Resources/public/js/menu.js'
+                - '@AsmodineFrontBundle/Resources/public/js/asmotaille.js'
+                - '@AsmodineFrontBundle/Resources/public/js/contact.js'
+                - '@AsmodineFrontBundle/Resources/public/js/index.js'
+                - '@AsmodineFrontBundle/Resources/public/js/product.js'
+                - '@AsmodineFrontBundle/Resources/public/js/profile_step.js'
+                - '@AsmodineFrontBundle/Resources/public/js/wishlist.js'
+                - '@AsmodineFrontBundle/Resources/public/js/cart.js'
+                - '@AsmodineFrontBundle/Resources/public/js/profile.js'
+                - '@AsmodineFrontBundle/Resources/public/js/functions.js'
+                - '@AsmodineFrontBundle/Resources/public/js/demo.js'
+
+        asmodine_model_js:
+            # output='css/asmodine.model.min.js'
+            inputs:
+                - '@AsmodineFrontBundle/Resources/public/js/model.js'
+        asmodine_product_js:
+            # output='css/asmodine.product.min.js'
+            inputs:
+                - '@AsmodineFrontBundle/Resources/public/thirdparty/js/lightgallery-all.js'

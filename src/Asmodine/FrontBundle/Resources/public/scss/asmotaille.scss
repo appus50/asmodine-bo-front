@@ -1,0 +1,40 @@
+@import "variables";
+
+.container-iframe {
+    margin-top: 100px;
+}
+
+#iframe {
+    width: 100%;
+    display: block;
+    height: 750px;
+    border: 0;
+}
+
+#asmotaille-header {
+    margin: 0 !important;
+    width: 100%;
+    top: 60px;
+    position: fixed;
+    background: $yellow;
+    z-index: 12;
+}
+
+#header.black{
+    background-color: $black !important;
+}
+
+#know-your-size{
+    font-size: 16px;
+}
+
+#before-asmotaille{
+    margin-top: 5px;
+    a{
+        color: $white;
+        :hover{
+            color: $white;
+        }
+    }
+
+}

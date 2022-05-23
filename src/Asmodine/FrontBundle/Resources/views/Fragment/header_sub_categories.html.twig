@@ -1,0 +1,89 @@
+{% if mode == 'desktop' %}
+    {% for category_root in categories_0 if category_root.enabled %}
+        {% spaceless %}
+            <div class="row">
+                <div class="third-line container" data-parent="{{ category_root.backId }}">
+                    <div class="col-md-12 bg-black">
+                        <div class="f-300 c-white">
+                            <div class="row">
+                                {% for category_inter in categories_1 if category_inter.backParentId == category_root.backId %}
+                                    <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12">
+                                        <div class="row">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 title" data-id="{{ category_inter.backId }}">
+                                                {{ category_inter.name }}
+                                            </div>
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 elements">
+                                                <div class="row">
+                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                        <ul class="third-line-list">
+                                                            {% for category_sub in categories_2 if category_sub.backParentId == category_inter.backId %}
+                                                                <li>
+                                                                    <a href="{{ url('asmodinefront_model_category', {'path': category_sub.path}) }}">
+                                                                        <div class="upload-icon category-icon">
+                                                                            {% if category_sub.icon %}
+                                                                                <img src="/img/categories/icons/subcategories/{{ category_sub.icon }}" alt="">
+                                                                            {% else %}
+                                                                                <i class="ion-tshirt"></i>
+                                                                            {% endif %}
+                                                                        </div>
+                                                                        <span>{{ category_sub.name|trim }}</span>
+                                                                    </a>
+                                                                </li>
+                                                            {% endfor %}
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endspaceless %}
+    {% endfor %}
+{% endif %}
+
+{% if mode == 'mobile' %}
+    <div class="col-sm-12 col-xs-12">
+        <ul class="main-menu">
+            {% for category_root in categories_0 if category_root.enabled %}
+                {% spaceless %}
+                    <li class="sub-menu">
+                        <a class="f-300" href="#">{{ category_root.name }}</a>
+                        <ul>
+                            {% for category_inter in categories_1 if category_inter.backParentId == category_root.backId %}
+                                <li class="sub-menu">
+                                    <a class="f-300" href="#">{{ category_inter.name }}</a>
+                                    <ul class="sub-sub-menu m-l-30">
+                                        {% for category_sub in categories_2 if category_sub.backParentId == category_inter.backId %}
+                                            <li>
+                                                <a href="{{ url('asmodinefront_model_category', {'path': category_sub.path}) }}">
+                                                    {% if category_sub.icon %}
+                                                        <div class="upload-icon category-icon">
+                                                            <img src="/img/categories/icons/subcategories/{{ category_sub.icon }}" alt="">
+                                                        </div>
+                                                    {% else %}
+                                                        <i class="ion-tshirt"></i>
+                                                    {% endif %}
+                                                    <span>{{ category_sub.name|trim }}</span>
+                                                </a>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                {% endspaceless %}
+            {% endfor %}
+            {% for mobile_link in more %}
+                <li>
+                    <a class="f-300" href="{{ mobile_link.url }}">{{ mobile_link.name }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}

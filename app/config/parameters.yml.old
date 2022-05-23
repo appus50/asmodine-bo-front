@@ -1,0 +1,32 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_host: asmodine_front_mariadb
+    database_port: 3306
+    database_name: dbasmodinefront
+    database_user: phpasmodinefront
+    database_password: dbasmofrontpwd
+    elasticsearch_host: asmodine_elasticsearch
+    elasticsearch_port: 9200
+    elasticsearch_username: elastic
+    elasticsearch_password: uyTaQDV7bgNGV4zCWMT2VDruMFAb98W2W
+    mailer_transport: smtp
+    mailer_host: ssl0.ovh.net
+    mailer_user: donotreply@asmodine.com
+    mailer_port: 465
+    mailer_password: 4474kaHsUES5CV5nc7zqjZQ44
+    mailer_sender_address: donotreply@asmodine.com
+    mailer_sender_name: Asmodine
+    mailer_contact_address: contact@asmodine.com
+    secret: 7yHppJsiqYcPrTJGsxFLeQqC
+    ide: 'phpstorm://open?url=file://%%f&line=%%l'
+    locale: fr
+    google_analytics_id: UA-XXX
+    api_keys.server.back.key: QFCXKEFn4RV3waH7aUAjVFTKqsRL7MhxRZ39zEdd
+    api_keys.client_key: rRbad3rPpKazCZ4FQQ6Mmo9rvoWfqFL6hkrp7BJm
+    asmodine_front_url: 'http://public.beta.asmodine.com'
+    asmodine_back_url: 'http://admin.beta.asmodine.com'
+    jwt_private_key_path: '%kernel.project_dir%/var/jwt/private.pem'
+    jwt_public_key_path: '%kernel.project_dir%/var/jwt/public.pem'
+    jwt_key_pass_phrase: youpassphrase
+    jwt_token_ttl: 3600
+    logger.level.asmodine_front: warning

@@ -1,0 +1,13 @@
+services:
+    monolog.logger.asmodine_front_user:
+        class: Symfony\Bridge\Monolog\Logger
+        arguments: [asmodine_front_user]
+
+monolog:
+    handlers:
+        asmodine_front_user:
+            type:       rotating_file
+            max_files:  30
+            path:       '%kernel.logs_dir%/%kernel.environment%.front.user.log'
+            level:      '%logger.level.asmodine_front%'
+            channels:   [asmodine_front_user]

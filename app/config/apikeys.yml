@@ -1,0 +1,22 @@
+parameters:
+
+    ##################
+    # Server
+    ##################
+    api_keys.server:
+        asmodine_back:
+            key: "%api_keys.server.back.key%"
+            authorized_routes:
+                - route: asmodinefront_apiback_brand
+                - route: asmodinefront_apiback_category
+
+    ##################
+    # Client
+    ##################
+    api_keys.client.key: '%api_keys.client_key%'
+    api_keys.client.api_end_points:
+        asmodine_front:
+            front_profile:   "%asmodine_back_url%/cmi/api/front/physical_profile"
+
+
+

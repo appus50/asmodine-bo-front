@@ -1,0 +1,5 @@
+{{ 'email.registration.title'|trans({'%username%': user_firstname})|raw|upper }}
+{{ 'email.registration.link_text'|trans|raw }}
+{{ asmodine_front_url ~ path('asmodinefront_user_activate', {'id': user_id, 'token': token}) }}
+
+

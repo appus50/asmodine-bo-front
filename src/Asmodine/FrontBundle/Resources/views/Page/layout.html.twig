@@ -1,0 +1,27 @@
+{% extends "AsmodineFrontBundle::layout.html.twig" %}
+
+{% block body %}
+    <div class="container bloc-recherche">
+        <div class="row">
+            <div class="col-md-12 align-right">
+                <div class="champ-recherche">
+                    <form id="search-form" action="{{ path('asmodinefront_main_search') }}" method="post">
+                        <input name="search" class="banner-search-input" placeholder="{{ 'main.search.placeholder'|trans }}" />
+                        <i class="ion-android-search"></i>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section id="main" class="container {{ slug }}">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12 breadcrumb">
+                    <a href="{{ path('asmodinefront_main_home') }}">{{ 'breadcrumb.title.home'|trans }}</a>
+                    I {{ ('breadcrumb.title.' ~ slug )|trans }}
+                </div>
+            </div>
+        </div>
+        {% block content %}{% endblock %}
+    </section>
+{% endblock %}

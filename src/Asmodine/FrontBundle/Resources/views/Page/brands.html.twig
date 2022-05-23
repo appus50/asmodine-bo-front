@@ -1,0 +1,49 @@
+{% extends "AsmodineFrontBundle:Page:layout.html.twig" %}
+
+{% block content %}
+    <div class="col-md-12 content">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="m-5 m-b-20">{{ 'page.brands.title'|trans }}</h1>
+                <hr class="m-0 m-l-5 m-r-5">
+                <p class="m-t-10 m-b-10">
+                    {% for letter in 'a'|upper..'z'|upper %}
+                        {% if letter in first_letters %}
+                            <a class="f-20 p-10 color-asmo" href="#shop_letter_{{ letter }}">{{ letter }}</a>
+                        {% else %}
+                            <span class="f-20 p-10">{{ letter }}</span>
+                        {% endif %}
+                    {% endfor %}
+                </p>
+                <hr class="m-0 m-l-5 m-r-5">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 f-lighter m-t-30">
+                {% for letter in first_letters %}
+                    <div class="row">
+                        <a class="anchor-header" id="shop_letter_{{ letter }}"></a>
+                        <div class="col-md-12 m-b-15 m-t-15">
+                            <div class="col-md-2">
+                                <p class="f-150 color-asmo text-center">{{ letter }}</p>
+                            </div>
+                            <div class="col-md-10 m-b-5 m-t-5">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        {% for brand in brands if brand.name|first|upper == letter %}
+                                            <div class="brand-logo-container col-sm-4">
+                                                <a class="brand-block m-b-10 m-t-10" href="{{ url('asmodinefront_model_brand', {'slug': brand.slug }) }}">
+                                                    <img class="brand m-r-15 p-l-5 p-r-5 brand-logo" src="{{ brand.logo }}" alt="{{ brand.name }}"/>
+                                                </a>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

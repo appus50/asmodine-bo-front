@@ -1,0 +1,589 @@
+@import "variables";
+@import "globals";
+
+#main {
+    &.user {
+        #modify-desc {
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
+        margin-top: 100px !important;
+        background: $white;
+        font-family: $oswald;
+
+        .presentation {
+            .picture-change {
+                display: none;
+                position: absolute;
+                bottom: 0;
+                left: 15px;
+                width: calc(100% - 30px);
+                text-align: center;
+                padding: 5px;
+                background-color: $yellow;
+                color: $white;
+                cursor: pointer;
+            }
+
+            div {
+                display: inline-block;
+            }
+
+            .picture {
+                position: relative;
+
+                &:hover {
+                    .picture-change {
+                        display: block;
+                    }
+                }
+
+                margin-top: 20px;
+                text-align: center;
+
+                img {
+                    width: 100%;
+                }
+            }
+
+            .content {
+                font-weight: 300;
+
+                h1 {
+                    text-transform: uppercase;
+                    font-size: 36px;
+                }
+
+                p {
+                    margin-top: 10px;
+                    font-family: $roboto_condensed;
+                    color: $grey;
+                    overflow-x: hidden;
+                    overflow-y: hidden;
+                    padding: 0;
+
+                    &:focus {
+                        border: 1px solid $grey;
+                    }
+                }
+
+                #modify-desc {
+                    border: 1px solid $grey;
+                    padding: 0 5px;
+                    border-radius: 5px;
+
+                    i {
+                        margin-right: 5px;
+                    }
+
+                    &:hover {
+                        background: $yellow;
+                        color: $white;
+                        border: 1px solid $yellow;
+                    }
+                }
+            }
+        }
+
+        .onglets {
+            margin-top: 20px;
+            margin-bottom: 35px;
+
+            .onglet {
+                cursor: pointer;
+
+                div {
+                    display: inline-block;
+                }
+
+                a {
+                    color: $black;
+                    display: block;
+                }
+
+                padding: 8px 0;
+                background: $light-grey;
+                font-size: 20px;
+                text-align: center;
+                font-weight: 300;
+
+                i {
+                    color: $yellow;
+                }
+
+                &:hover, &.active {
+                    background: $yellow;
+                    color: $white;
+
+                    i {
+                        color: $white;
+                    }
+
+                    a {
+                        color: $white;
+                    }
+                }
+            }
+        }
+    }
+}
+
+#page-content {
+    font-size: 16px;
+    font-weight: 300;
+    padding-bottom: 30px;
+
+    hr {
+        border-color: $light-grey;
+    }
+}
+
+.small_wishlist, .header_wishlist {
+    position: relative;
+    cursor: pointer;
+
+    img {
+        width: 100%;
+    }
+
+    div.background_alpha {
+        color: $white;
+        width: 100%;
+        height: 100%;
+        background: $black_alpha_07;
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+
+        div.center-table {
+            display: table;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+
+            div.center-table-cell {
+                display: table-cell;
+                vertical-align: middle;
+                text-align: center;
+            }
+        }
+    }
+
+    .wishlist-user {
+        font-size: 2rem;
+    }
+}
+
+.small_wishlist {
+    min-height: 248px;
+}
+
+.header_wishlist {
+    height: 200px;
+    max-height: 200px;
+    padding-bottom: 20px;
+}
+
+.wishlist-action {
+    display: inline-block;
+    margin-left: 15px;
+}
+
+#wishlist-pagination {
+    .pagination {
+        display: inline;
+    }
+}
+
+.social-sharing {
+    background-color: $dark-grey;
+    padding: 4px 6px;
+    display: inline-block;
+    height: 34px;
+
+    img {
+        width: 25px;
+    }
+}
+
+.tuto-link {
+    color: $yellow;
+    font-size: 15px;
+    text-decoration: underline;
+
+    &:hover {
+        color: $yellow-light;
+        cursor: pointer;
+    }
+}
+
+.measurement-banner-form {
+    background: url($background_blur_url) center top;
+    font-family: $oswald;
+
+    h2 {
+        color: $black;
+        font-weight: 300;
+        font-size: 30px;
+    }
+
+    h4 {
+        color: $yellow;
+        font-weight: 400;
+        font-size: 20px;
+        text-transform: uppercase;
+    }
+
+    p {
+        color: $black;
+        font-family: $roboto_condensed;
+        font-size: 16px;
+    }
+
+    .container {
+        padding-top: 90px;
+        padding-bottom: 30px;
+        text-align: center;
+        background: $white;
+
+        .silhouette-select {
+            display: inline-block;
+            margin: 0 20px;
+        }
+
+        a.btn i {
+            position: absolute;
+            right: 10px;
+        }
+    }
+
+    .form-control {
+        border: 1px solid #e0e0e0;
+
+        &.none {
+            border: 0px;
+        }
+    }
+}
+
+p {
+    &.center {
+        text-align: center;
+    }
+
+    &.fat-size {
+        font-size: 20px;
+    }
+
+    &.up-top {
+        margin-top: 20px;
+    }
+}
+
+.block-header-grey {
+    padding: 15px;
+    background-color: $light-grey;
+    color: $grey;
+    font-size: 19px;
+}
+
+.measure {
+    .btn.cta2 {
+        &:hover {
+            i.circled::before {
+                color: $yellow-light;
+            }
+        }
+    }
+
+    .content {
+        font-size: 20px;
+        max-height: 515px;
+        overflow-y: scroll;
+
+        p {
+            text-align: left;
+
+            &.value {
+                font-size: 14px;
+            }
+
+            &.head {
+                i {
+                    color: $yellow;
+                }
+
+                &.size {
+                    i {
+                        padding: 0 1px;
+                        border-top: 2px solid $yellow;
+                        border-bottom: 2px solid $yellow;
+                    }
+                }
+
+                &.weight {
+                    i {
+                        background: url($poids_picto_profil_url) no-repeat center bottom;
+                        height: 24px;
+                        width: 20px;
+                        margin-right: 5px;
+                        display: inline-block;
+                    }
+                }
+            }
+        }
+    }
+}
+
+h4.title {
+    font-size: 20px;
+    color: $yellow;
+    text-transform: uppercase;
+}
+
+i.circled::before {
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    background-color: white;
+    color: $yellow;
+    padding-top: 1px;
+    padding-left: 4px;
+    font-size: 23px;
+}
+
+i.circled.yellow::before {
+    color: $white;
+    background-color: $yellow;
+}
+
+.morphotype, .morphologie, .measure {
+    .description{
+        margin-top: 40px;
+        p {
+            text-align: justify !important;
+        }
+    }
+
+    text-align: center;
+
+    .title {
+        font-size: 20px;
+        color: $yellow;
+        text-transform: uppercase;
+    }
+
+    .element {
+        .small-title {
+            font-size: 24px;
+            padding-bottom: 10px;
+            padding-top: 10px;
+        }
+
+        .color-container {
+            width: 40px;
+            height: 40px;
+            background: #000;
+            border-radius: 50%;
+            margin: auto;
+
+            &.skin {
+                &.very_light {
+                    background: $skin_very_light;
+                }
+
+                &.light {
+                    background: $skin_light;
+                }
+
+                &.pink {
+                    background: $skin_pink;
+                }
+
+                &.matte {
+                    background: $skin_matte;
+                }
+
+                &.dark {
+                    background: $skin_dark;
+                }
+
+                &.very_dark {
+                    background: $skin_very_dark;
+                }
+            }
+
+            &.eyes {
+                &.blue {
+                    background: $eyes_blue;
+                }
+
+                &.green_gray {
+                    background: $eyes_green_gray;
+                }
+
+                &.brown {
+                    background: $eyes_brown;
+                }
+
+                &.black {
+                    background: $eyes_black;
+                }
+            }
+
+            &.hair {
+                &.white {
+                    background: $hair_white;
+                }
+
+                &.blond {
+                    background: $hair_blond;
+                }
+
+                &.light_brown {
+                    background: $hair_light_brown;
+                }
+
+                &.honey {
+                    background: $hair_honey;
+                }
+
+                &.brown {
+                    background: $hair_brown;
+                }
+
+                &.black {
+                    background: $hair_black;
+                }
+            }
+        }
+    }
+
+    .image {
+        img {
+            width: 100%;
+        }
+    }
+}
+
+.morphotype {
+    input[type="radio"] {
+        cursor: pointer;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        outline: 0;
+        display: none;
+
+        &.bubble-choice {
+            & + label {
+                margin: 1px 5px;
+                border-radius: 50%;
+                border: 1px solid #dcddde;
+            }
+
+            & + label:after {
+                content: "O";
+                color: rgba(0, 0, 0, 0);
+                min-height: 40px;
+                min-width: 40px;
+                display: block;
+                line-height: 37px;
+                font-size: 23px;
+            }
+
+            &:checked + label:after {
+                content: "✓";
+                color: #fff;
+                text-align: center;
+                margin-left: -1px;
+                font-weight: bold;
+                margin-right: 1px;
+            }
+        }
+
+        &.bubble-choice {
+            &.skin {
+                &.very_light + label {
+                    background: $skin_very_light;
+                }
+
+                &.light + label {
+                    background: $skin_light;
+                }
+
+                &.pink + label {
+                    background: $skin_pink;
+                }
+
+                &.matte + label {
+                    background: $skin_matte;
+                }
+
+                &.dark + label {
+                    background: $skin_dark;
+                }
+
+                &.very_dark + label {
+                    background: $skin_very_dark;
+                }
+            }
+
+            &.eyes {
+                &.blue + label {
+                    background: $eyes_blue;
+                }
+
+                &.green_gray + label {
+                    background: $eyes_green_gray;
+                }
+
+                &.brown + label {
+                    background: $eyes_brown;
+                }
+
+                &.black + label {
+                    background: $eyes_black;
+                }
+            }
+
+            &.hair {
+                &.white + label {
+                    background: $hair_white;
+                }
+
+                &.white:checked + label:after {
+                    color: #000000;
+                }
+
+                &.blond + label {
+                    background: $hair_blond;
+                }
+
+                &.light_brown + label {
+                    background: $hair_light_brown;
+                }
+
+                &.honey + label {
+                    background: $hair_honey;
+                }
+
+                &.brown + label {
+                    background: $hair_brown;
+                }
+
+                &.black + label {
+                    background: $hair_black;
+                }
+            }
+        }
+    }
+}
+
+.completed-profile {
+    font-size: 15px;
+}

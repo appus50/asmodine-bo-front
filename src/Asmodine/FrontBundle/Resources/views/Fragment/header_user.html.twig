@@ -1,0 +1,61 @@
+{% if mode == 'desktop' %}
+    <div class="row pull-right">
+        {#{% if app.user %}
+            <div class="icons">
+                <a href="#" data="#small_alerts"><i class="ion-flag"></i></a>
+            </div>
+        {% endif %}#}
+        {#<div class="icons">
+            <a href="#" id="floating-cart" data="#small_cart">
+                <i class="fa fa-shopping-bag"></i>
+                <span class="floating-cart-nb-product"></span>
+            </a>
+        </div>#}
+        {% if app.user %}
+             {#<a id="photo-user-connected" class="link hidden-xs" href="{{ url('asmodinefront_user_profile') }}">
+                <span>{{ app.user.firstname }} {{ app.user.lastname }}</span>
+            </a>#}
+            <a class="link hidden-sm hidden-xs" href="{{ url('fos_user_security_logout') }}">{{ 'user.logout'|trans }}</a>
+            <div id="div-create-morpho">
+                {#<a id="create-morpho" class="btn cta2 hidden-xs" href="{{ url('asmodinefront_morpho_step') }}">#}
+                <a id="create-morpho" class="hidden-xs" href="{{ url('asmodinefront_user_profile') }}">
+                    {#{ 'user.my_morpho_profil'|trans|raw }#}
+                    {{ 'user.my_profil'|trans|raw }}
+                </a>
+            </div>
+        {% else %}
+            <div id="div-create-morpho">
+                <a data-toggle="modal" class="link hidden-sm hidden-xs register-asmo" href="#preSubscriptionModal">{{ 'user.register'|trans|raw }}</a>
+            </div>
+            <a data-toggle="modal" class="link hidden-xs" href="#loginModal">{{ 'user.login'|trans }}</a>
+        {% endif %}
+    </div>
+{% endif %}
+
+
+{% if mode == 'mobile' %}
+    <div class="col-sm-12 col-xs-12 text-center p-t-20 p-b-20">
+        {% if app.user %}
+            <a class="btn cta2 hidden-sm w-100 p-5" href="{{ url('asmodinefront_user_profile') }}">
+                {{ 'user.modify_morphological_profile_mobile'|trans }}
+            </a>
+        {% else %}
+            <a class="btn hidden-sm cta2 w-100 p-5" href="{{ url('asmodinefront_user_presubscription_mobile') }}">
+                {{ 'user.create_morphological_profile_mobile'|trans }}
+            </a>
+        {% endif %}
+    </div>
+    <div class="col-sm-12 col-xs-12 text-center p-b-20">
+        <div class="row">
+            {% if app.user %}
+                <div class="col-sm-12 col-xs-12">
+                    <a data-toggle="modal" class="btn cta2 waves-effect w-100 p-5" href="{{ url('fos_user_security_logout') }}">{{ 'user.logout_profile'|trans }}</a>
+                </div>
+            {% else %}
+                <div class="col-sm-12 col-xs-12">
+                    <a data-toggle="modal" class="btn cta2 waves-effect w-100 p-5" href="{{ url('asmodinefront_fosuser_security_login_mobile') }}">{{ 'user.login'|trans }}</a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endif %}

@@ -1,0 +1,80 @@
+<header id="header" class="is-sticky">
+    <div class="second-line row {% if select is defined and select %} black {% endif %}">
+        <div class="container">
+            <div class="col-lg-5 col-md-5 col-sm-4 col-xs-1 second-bar text-left">
+                <div class="row">
+                    <div id="second-line-left-menu" class="hidden-sm hidden-xs">
+                        {{ render(url('asmodinefront_fragment_headercategories')) }}
+                    </div>
+                    <div class="hidden-lg hidden-md p-27-0">
+                        <div id="menu-trigger" data-trigger="#second-line-mobile-menu">
+                            <div class="line-wrap">
+                                <div class="line top"></div>
+                                <div class="line center"></div>
+                                <div class="line bottom"></div>
+                            </div>
+                        </div>
+
+                        <div id="second-line-mobile-menu" class="sidebar">
+                            {{ render_esi(url('asmodinefront_fragment_headeruser', { 'mode': 'mobile' })) }}
+                            {{ render(url('asmodinefront_fragment_headersubcategories', { 'mode': 'mobile' })) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-10 logo">
+                <a href="{{ url('asmodinefront_main_home') }}" data-toggle="popoverbeta" data-placement="bottom" data-content="{{ 'home.beta.popover'|trans }}" data-trigger="hover">
+                    <div class="row" id="header-logo">
+                        <img class="p-22-0" src="{{ asset('/img/logo/asmodine.png') }}"/>
+                        <img src="{{ asset('/img/beta.png') }}" />
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-5 col-md-5 col-sm-4 col-xs-1 second-bar text-right">
+                {{ render_esi(url('asmodinefront_fragment_headeruser', { 'mode': 'desktop' })) }}
+            </div>
+        </div>
+    </div>
+    {{ render(url('asmodinefront_fragment_headersubcategories', { 'mode': 'desktop' })) }}
+    {{ render(url('asmodinefront_fragment_cart')) }}
+</header>
+    {# LOGIN FACEBOOK #}
+{#<div id="fb-root"></div>
+<script>
+    window.fbAsyncInit = function() {
+        // init the FB JS SDK
+        FB.init({
+            appId      : {{ facebook_app_id }},
+            xfbml      : true,
+            version    : 'v2.9'
+        });
+        FB.AppEvents.logPageView();
+    };
+
+    (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/fr_FR/all.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    function fb_login() {
+        FB.getLoginStatus(function(response) {
+            if (response.status === 'connected') {
+                // connected
+                document.location = "{{ url("hwi_oauth_service_redirect", {service: "facebook"}) }}";
+
+            } else {
+                // not_authorized
+                FB.login(function(response) {
+                    if (response.authResponse) {
+                        document.location = "{{ url("hwi_oauth_service_redirect", {service: "facebook"}) }}";
+                    }
+                }, {scope: 'email'});
+            }
+        });
+
+        return false;
+    }
+</script>#}

@@ -1,0 +1,16 @@
+asmodine_front:
+    resource: "@AsmodineFrontBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+api:
+    resource: "@AsmodineFrontBundle/Entity/EntityFromBack/"
+    type:     api_platform
+    prefix:   /api/doc
+
+api_login_check:
+    path: /api/user/login_check
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+    prefix:   /user

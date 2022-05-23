@@ -1,0 +1,7 @@
+<div class="social-networks hidden-xs">
+    {% for network in ['facebook', 'pinterest', 'instagram', 'linkedin', 'twitter'] %}
+        <a href="{{ ('social.' ~ network ~ '.url')|trans }}" target="_blank">
+            <img src="{{ preload(asset('img/socialnetwork/' ~ network ~ '.png')) }}" alt="{{ ('social.' ~ network ~ '.name')|trans }}"/>
+        </a>
+    {% endfor %}
+</div>

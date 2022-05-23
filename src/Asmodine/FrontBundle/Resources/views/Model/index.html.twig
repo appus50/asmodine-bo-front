@@ -1,0 +1,260 @@
+{% extends "AsmodineFrontBundle::layout.html.twig" %}
+
+{% block body %}
+    <div class="container bloc-recherche">
+        <div class="row">
+            <div class="col-md-12 align-right">
+                <div class="champ-recherche">
+                    <form id="search-form" action="{{ url('asmodinefront_main_search', {}, true) }}" method="post">
+                        <input name="search" class="banner-search-input" placeholder="{{ 'home.banner.search_placeholder'|trans }}" />
+                        <i class="banner-search-icon ion-search"></i>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section id="main" class="container catalog">
+        <div class="col-md-12">
+                <div class="col-md-12 top-part">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 breadcrumb">
+                            {% for elem in breadcrumb %}
+                                {% if loop.index0 > 0 %}I {% endif %}<a href="{{ elem.url }}">{{ elem.name }}</a>
+                            {% endfor %}
+                            I {{ title }}
+                            ({{ 'model.nb_models'|transchoice(total, {'%count%': total}) }})
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 top-presentation">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1>{% if title_image is not null %}<img src="{{ title_image }}" class="brand-logo" style="max-width: 50%; max-height: 200px" alt="">{% else %}{{ title }}{% endif %}</h1>
+                            <div class="description">
+                                {{ description }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            <div class="col-md-12 content">
+                {% if models|length > 0 %}
+                    <div class="row">
+                        <div class="col-md-3" id="filters">
+                            {{ include('AsmodineFrontBundle:Model:_filters.html.twig', { 'filters': aggs, 'active': filters, 'from_brand': from_brand, 'categories_gender': categories_gender, 'categories_depth2': categories_depth2 }) }}
+                        </div>
+                        <div class="col-md-9">
+                            <div class="row filter-by-and-pagination">
+                                <div class="col-md-4 filter-by">
+                                    {% set route, params = app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge(app.request.query.all) %}
+                                    {% set order = app.request.get('order') %}
+                                    <select name="select">
+                                        <option value="-1" data-url="{{ path(route,params) }}" {% if order is not defined or order == '' %}selected {% endif %}>{{ 'model.filter-by.title'|trans }}</option>
+                                        {% for option in ['price_asc', 'price_desc'] %}
+                                            <option {% if order is defined and order == option %}selected {% endif %} value="{{ loop.index }}" data-url="{{ path(route,params|merge({'order': option })) }}">{{ ('model.filter-by.' ~ option)|trans }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="col-md-3 personal-shopper">
+                                    {% if app.user %}
+                                        <label data-toggle="modal" href="#asmoconseilMorphoModal">
+                                            {{ 'model.personal-shopper'|trans }}<i class="ion-ios-information-outline"></i>
+                                        </label>
+                                        <div class="infobox">
+                                            {{ 'model.infobox'|trans }}
+                                        </div>
+                                        <label class="switch-style">
+                                            <input id="personal_shopper" data-url="{{ path('asmodinefront_model_advice') }}" type="checkbox" {% if advice %}checked="checked"{% endif %} />
+                                            <div class="slider round"></div>
+                                        </label>
+                                    {% endif %}
+                                </div>
+                                <div class="col-md-5 force-align-right">
+                                    {{ include('AsmodineFrontBundle:Model:_pagination.html.twig', { 'datas': pagination }) }}
+                                </div>
+                            </div>
+                            <div id="list-of-products" class="row">
+                                {% for model in models %}
+                                    {% if app.user and model.product_id is defined %}
+                                        {% set productUrl = url('asmodinefront_products_model', {'id': model.id, 'productid': model.product_id, 'best': 1 }) %}
+                                        {% set has_advice_link = true %}
+                                    {% else %}
+                                        {% set productUrl = url('asmodinefront_products_model', {'id': model.id }) ~ '?from_page=' ~ (app.request.uri|url_encode) %}
+                                        {% set has_advice_link = false %}
+                                    {% endif %}
+                                    {% set blankurl = (brands_iframe[model.brand_id] is not defined or not brands_iframe[model.brand_id]) and (not has_advice_link) %}
+                                    <div class="col-xs-12 col-md-4" data-id="{{ model.id }}" data-categorie="{{ model.category_depth2_id }}">
+                                        <div class="product">
+                                            <div class="product-image">
+                                                <a class="image" href="{{ productUrl }}" {% if blankurl %} target="_blank" rel="nofollow" {% endif %}>
+                                                    <img class="model" src="{{ model.image }}" alt="{{ model.name|escape }}"/>
+                                                    {% if app.user and advice %}
+                                                        <div class="morpho">
+                                                            {% if  model.note_size is defined and model.note_size is not null %}
+                                                                <img src="{{ asset('img/conseil_morpho_on.png') }}" />
+                                                            {% else %}
+                                                                <img src="{{ asset('img/conseil_morpho_off.png') }}" />
+                                                            {% endif %}
+                                                        </div>
+                                                        <div class="bubble {% if model.note_advice is defined and model.note_advice is not null %}{{ model.note_advice|note_color }}{% else %}hide{% endif %}"></div>
+                                                    {% endif %}
+                                                    <div class="message">
+                                                        {{ 'model.advice_unavailable'|trans }}
+                                                    </div>
+                                                </a>
+                                                <div class="image-hover">
+                                                    {% if app.user %}
+                                                    {# TODO WHISHLIST <div class="col-md-12 bg-black">
+                                                            <div class="row">
+                                                                {% if wishlist is defined and wishlist and wishlist.hasProduct(product) and wishlist_manager is defined and wishlist_manager.isOwnBy(wishlist, app.user) %}
+                                                                    <a data-product-id="{{ model.id }}" href="{{ path('wishlist_product_remove', {'wishlist': wishlist.id, 'product': model.id}) }}" class="clickable grey">
+                                                                        <div>
+                                                                            <i class="ion-star"></i>
+                                                                        </div>
+                                                                        <div>
+                                                                            {{ 'small_product.delete_from_wishlist'|trans }}
+                                                                        </div>
+                                                                    </a>
+                                                                {% else %}
+                                                                    <a data-product-id="{{ model.id }}" data-toggle="modal" href=" {% if not app.user %}#loginModal{% elseif app.user.hasWishlist %}#wishlistModal{% else %}#wishlistAddModal{% endif %}" class="clickable grey">
+                                                                        <div>
+                                                                            <i class="ion-star"></i>
+                                                                        </div>
+                                                                        <div>
+                                                                            {{ 'small_product.add_to_wishlist'|trans }}
+                                                                        </div>
+                                                                    </a>
+                                                                {% endif %}
+                                                            </div>
+                                                        </div> #}
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+
+                                            <div class="description">
+                                                <div class="row p-t-20">
+                                                    <div class="col-lg-9 ol-md-8 col-sm-7 col-xs-6">
+                                                        <div class="name">
+                                                            {% if app.user %}
+                                                                <a href="{{ productUrl }}" title="{{ model.name }}"{% if blankurl %} target="_blank" {% endif %} rel="nofollow">{{ model.name }}</a>
+                                                            {% else %}
+                                                                <a href="{{ url('asmodinefront_products_model', {'id': model.id, 'productid': 'voir' }) }}" class="no-cursor txt-black" title="{{ model.name }}">{{ model.name }}</a>
+                                                            {% endif %}
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-4 col-sm-5 col-xs-6 text-right">
+                                                        {% if model.discount %}
+                                                            <div class="promo">
+                                                                {# TODO Vérif #}
+                                                                {% if model.discount_type == 'amount' %}
+                                                                    {{ model.discount_amount }}
+                                                                    {% set old_price = model.unit_price + model.discount_amount %}
+                                                                {% else %}
+                                                                    {{ model.discountAmount|number_format(0, ',') ~ ' %' }}
+                                                                    {% set old_price = model.unitPrice / (1 - (product.discountAmount / 100)) %}
+                                                                {% endif %}
+                                                            </div>
+                                                        {% endif %}
+                                                        {% if app.user %}
+                                                            <div class="price">{{ model.unit_price|currency(model.currency) }}</div>
+                                                        {% else %}
+                                                            <div class="price"><a class="no-cursor txt-black" href="{{  url('asmodinefront_products_model', {'id': model.id, 'productid': 'voir' }) }}">{{ model.unit_price|currency(model.currency) }}</a></div>
+                                                        {% endif %}
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                                        <div class="details">
+                                                            {{ model.description_short }}
+                                                            <a href="{{ productUrl }}"{% if blankurl %} target="_blank" {% endif %}>{{ model.name }}</a>
+                                                        </div>
+                                                    </div>
+                                                    {% if model.discount_old_price is not null and model.discount_old_price != model.unit_price %}
+                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-right">
+                                                            <div class="oldprice">{{ model.discount_old_price|currency(model.currency) }}</div>
+                                                        </div>
+                                                    {% endif %}
+                                                </div>
+                                                {% if help %}
+                                                    <div class="model-help">
+                                                        <table class="table">
+                                                            <tr>
+                                                                <td><strong>Advice :</strong> {{ model.note_advice is defined ? model.note_advice : '' }}</td>
+                                                                <td class="text-right"><strong>Ranking :</strong> {{ model.note_ranking is defined ? model.note_ranking : '' }}</td>
+                                                            </tr>
+                                                        </table>
+                                                        <table class="table">
+                                                            <tr>
+                                                                <td><strong>Size :</strong> {{ model.note_size is defined ? model.note_size : '' }}</td>
+                                                                <td class="text-center"><strong>Color :</strong> {{ model.note_color is defined ? model.note_color : '' }}</td>
+                                                                <td class="text-right"><strong>Style :</strong> {{ model.note_style is defined ? model.note_style : '' }}</td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                {% endif %}
+                                                <hr>
+                                                <div class="reseller">{{ 'model.reseller'|trans }} {{ model.brand_name }}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% if loop.index % 3 == 0 and loop.index > 1 %}</div><div class="row">{% endif %}
+                                {% endfor %}
+                            </div>
+                            <div class="row bottom-part">
+                                {{ include('AsmodineFrontBundle:Model:_pagination.html.twig', { 'datas': pagination }) }}
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="row">
+                        {% if filters|length > 0 %}
+                            <div class="col-md-3" id="filters">
+                                {{ include('AsmodineFrontBundle:Model:_filters.html.twig', { 'filters': aggs, 'active': filters, 'from_brand': from_brand, 'from_category': from_category }) }}
+                            </div>
+                            <div class="col-md-9">
+                                <h3 class="m-30 text-center">{{ 'model.no_model'|trans }}</h3>
+
+                                {% if app.user %}
+                                    {% if advice %}
+                                        <div class="text-center no-model-asmoconseil">
+                                            <p>{{ 'model.personal-shopper-deactivate-filters'|trans }}</p>
+                                            <label class="switch-style">
+                                                <input id="personal_shopper" data-url="{{ path('asmodinefront_model_advice') }}" type="checkbox" {% if advice %}checked="checked"{% endif %} />
+                                                <div class="slider round"></div>
+                                                <span class="label-personnal-shopper">{{ 'model.personal-shopper'|trans }}</span>
+                                            </label>
+                                        </div>
+                                    {% endif %}
+                                {% endif %}
+
+                            </div>
+                        {% else %}
+                            <h3 class="m-30 text-center">{{ 'model.no_model'|trans }}</h3>
+
+                            {% if app.user %}
+                                {% if advice %}
+                                    <div class="text-center no-model-asmoconseil">
+                                        <p>{{ 'model.personal-shopper-deactivate'|trans }}</p>
+                                        <label class="switch-style">
+                                            <input id="personal_shopper" data-url="{{ path('asmodinefront_model_advice') }}" type="checkbox" {% if advice %}checked="checked"{% endif %} />
+                                            <div class="slider round"></div>
+                                            <span class="label-personnal-shopper">{{ 'model.personal-shopper'|trans }}</span>
+                                        </label>
+                                    </div>
+                                {% endif %}
+                            {% endif %}
+
+                        {% endif %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% javascripts '@asmodine_model_js' filter='?jsqueeze' output='js/asmodine.model.min.js' %}
+        <script src="{{ asset(asset_url) }}"></script>
+    {% endjavascripts %}
+{% endblock %}

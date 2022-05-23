@@ -1,0 +1,25 @@
+{% extends "::base.html.twig" %}
+
+{% block meta %}
+    <META http-equiv="refresh" content="3; URL={{ redirect_url }}">
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body_class %}redirect_page{% endblock %}
+
+{% block fullbody %}
+    <div id="redirect-page" class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <p><img src="{{ asset('img/logo/asmodine_monochrome.png') }}" class="img-responsive" alt="Asmodine" id="logo"/></p>
+                <p id="sentence">Vous êtes redirigé vers <span id="redirected_link">{{ brand_name }}.</span></p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+{% endblock %}

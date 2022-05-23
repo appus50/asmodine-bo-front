@@ -1,0 +1,71 @@
+<div class="row">
+{{ form_start(form, {'attr': {'id': 'wishlist_add'}, 'action': path('asmodinefront_wishlist_add', {'redirect': redirect})}) }}
+{{ form_errors(form) }}
+<fieldset>
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <div class="input-group form-group input-bordered">
+                <span class="input-group-addon">
+                    <i class="ion-heart"></i>
+                </span>
+                <div>
+                    {{ form_errors(form.name) }}
+                    {{ form_widget(form.name) }}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 col-sm-12">
+            <div>
+                {{ form_errors(form.image) }}
+            </div>
+            <div class="upload-fields">
+                <a class="col-md-12 btn btn-primary facebook">
+                    {{ form_label(form.image) }}
+                    {{ form_widget(form.image) }}
+                </a>
+                <p class="file-name-modal"></p>
+            </div>
+        </div>
+    </div>
+</fieldset>
+{{ form_widget(form.submit) }}
+{{ form_end(form) }}
+</div>
+<script type="text/javascript">
+    document.getElementById('wishlist_image').onchange = function(event) {
+        // fire the upload here
+        var input = document.getElementById('wishlist_image');
+        var block = input.findParent('upload-fields');
+        var filename = block.querySelector('.file-name-modal');
+        if (input.files.length > 0 && input.files[0]) {
+            filename.innerHTML = input.files[0].name;
+        }
+    };
+
+    document.getElementById('wishlist_add').onsubmit = function (e) {
+        e.preventDefault();
+
+        var form = e.currentTarget;
+        var form_data = new FormData(form);
+
+        $.ajax({
+            type: 'POST',
+            url: form.action,
+            data: form_data,
+            dataType: 'json',
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                form.outerHTML = data.html;
+                if (data.redirect && data.redirect === true) {
+                    location.reload();
+                }
+            },
+            errors: function(err) {
+                console.error(err);
+            }
+        });
+
+    };
+</script>
+

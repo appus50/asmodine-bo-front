@@ -1,0 +1,12 @@
+{% extends "AsmodineFrontBundle::layout.html.twig" %}
+
+{% block body_class %}{{ parent() }} user-creation{% endblock %}
+{% block title %}Asmodine : {{ 'user.account.create'|trans }}{% endblock %}
+{% block description %}Asmodine : {{ 'user.account.create'|trans }}{% endblock %}
+
+{% block body %}
+    <div class="m-t-120">
+        <h2 class="text-center m-b-20">{{ 'user.account.create'|trans }}</h2>
+        {% include 'AsmodineFrontBundle:User:form.registration.html.twig' with {form: form} %}
+    </div>
+{% endblock %}

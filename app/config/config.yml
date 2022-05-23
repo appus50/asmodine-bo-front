@@ -1,0 +1,118 @@
+imports:
+    - { resource: parameters.yml }
+    - { resource: logger.yml }
+    - { resource: security.yml }
+    - { resource: services.yml }
+    - { resource: assetic.yml }
+    - { resource: apikeys.yml }
+    - { resource: "@AsmodineCommonBundle/Resources/config/services.yml" }
+    - { resource: "@AsmodineFrontBundle/Resources/config/services.yml" }
+
+framework:
+    esi:
+        enabled: true
+    translator:
+        fallbacks: '%locale%'
+        paths:
+            - '%kernel.root_dir%/../vendor/asmodine/common/src/Resources/translations'
+            - '%kernel.root_dir%/../src/Asmodine/FrontBundle/Resources/translations/'
+    secret: '%secret%'
+    router:
+        resource: '%kernel.project_dir%/app/config/routing.yml'
+        strict_requirements: ~
+    form: ~
+    csrf_protection: ~
+    validation: { enable_annotations: true }
+    #serializer: { enable_annotations: true }
+    templating:
+        engines: ['twig']
+        hinclude_default_template: "::hinclude.html.twig"
+    default_locale: '%locale%'
+    trusted_hosts: ~
+    session:
+        # https://symfony.com/doc/current/reference/configuration/framework.html#handler-id
+        handler_id: session.handler.native_file
+        save_path: '%kernel.project_dir%/var/sessions/%kernel.environment%'
+    fragments: { path: /_fragment }
+    http_method_override: true
+    assets:
+        version: '180714'
+        version_format: "%%s?v=%%s"
+    php_errors:
+        log: true
+
+# Twig Configuration
+twig:
+    debug: '%kernel.debug%'
+    strict_variables: '%kernel.debug%'
+    paths:
+        '%kernel.project_dir%/src/Asmodine/FrontBundle/Resources/views': AsmodineFrontBundle
+    form_themes:
+        - 'AsmodineFrontBundle:Form:form.html.twig'
+    globals:
+        ga_id: '%google_analytics_id%'
+        facebook_px_id: '%facebook_pixel_id%'
+        asmodine_front_url: '%asmodine_front_url%'
+        mailer_contact_address: '%mailer_contact_address%'
+
+# Doctrine Configuration
+doctrine:
+    dbal:
+        driver:     pdo_mysql
+        host:       '%database_host%'
+        port:       '%database_port%'
+        dbname:     '%database_name%'
+        user:       '%database_user%'
+        password:   '%database_password%'
+        charset:    utf8mb4
+        default_table_options:
+            charset: utf8mb4
+            collate: utf8mb4_unicode_ci
+        schema_filter: ~^(?!front_manual_)~
+    orm:
+        auto_generate_proxy_classes: '%kernel.debug%'
+        entity_managers:
+            default:
+                entity_listener_resolver: asmodine.front.doctrine.entity_listener_resolver
+                mappings:
+                    AsmodineFrontBundle: ~
+
+doctrine_migrations:
+    dir_name: "%kernel.root_dir%/DoctrineMigrations"
+    namespace: Application\Migrations
+    table_name: doctrine_version_front
+    name: Asmodine Front Migrations
+
+fos_user:
+    db_driver: orm
+    firewall_name: main
+    user_class: Asmodine\FrontBundle\Entity\User
+    from_email:
+        address: '%mailer_sender_address%'
+        sender_name: '%mailer_sender_name%'
+
+lexik_jwt_authentication:
+    private_key_path: '%jwt_private_key_path%'
+    public_key_path:  '%jwt_public_key_path%'
+    pass_phrase:      '%jwt_key_pass_phrase%'
+    token_ttl:        '%jwt_token_ttl%'
+    token_extractors:
+        authorization_header:      # look for a token as Authorization Header
+            enabled: true
+            prefix:  Bearer
+            name:    JWT
+        cookie:                    # check token in a cookie
+            enabled: true
+            name:    BEARER
+        query_parameter:           # check token in query string parameter
+            enabled: true
+            name:    bearer
+
+# Swiftmailer Configuration
+swiftmailer:
+    transport:  '%mailer_transport%'
+    host:       '%mailer_host%'
+    username:   '%mailer_user%'
+    password:   '%mailer_password%'
+    port:       '%mailer_port%'
+    spool: { type: memory }

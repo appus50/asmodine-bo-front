@@ -1,0 +1,50 @@
+<div class="modal" id="morphoprofileModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">
+                    {{ 'profile.step.title'|trans }}
+                </h4>
+            </div>
+            <div class="modal-body">
+                <form action="https://{{ app.request.httpHost ~ app.request.requestUri }}" method="post">
+                    <div class="row">
+                        <div class="col-md-12 text-center m-b-20">
+                            <p class="center">{{ 'profile.step.popup.text'|trans|raw }}</p>
+                            <p><a class="btn btn-primary w3-text-white" href="/files/asmodine_metre-ruban.pdf" target="_blank">Télécharger le mètre ruban</a></p>
+                            <div class="col-md-6">
+                                <div class="input-group form-group input-bordered">
+                                    <span class="input-group-addon">
+                                        <i class="icon-weight"></i>
+                                    </span>
+                                    <div>
+                                        {{ form_errors(form_popup.weight) }}
+                                        {{ form_widget(form_popup.weight, {attr: {'class' : 'form-control'}}) }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-group form-group input-bordered">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-arrows-v b-t-2-y b-b-2-y f-18"></i>
+                                    </span>
+                                    <div>
+                                        {{ form_errors(form_popup.height) }}
+                                        {{ form_widget(form_popup.height, {attr: {'class' : 'form-control'}}) }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="w-100">
+                            {{ form_widget(form_popup.submit, {attr: {'class' : 'btn btn-primary w-100 waves-effect'}}) }}
+                        </div>
+                    </div>
+                {{ form_end(form_popup) }}
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

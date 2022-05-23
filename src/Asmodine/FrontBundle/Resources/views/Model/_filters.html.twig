@@ -1,0 +1,182 @@
+{% spaceless %}
+    {% if active['gender'] is defined
+        or active['size'] is defined
+        or active['price'] is defined
+        or active['category'] is defined
+        or active['color'] is defined
+        or active['shop'] is defined %}
+        <div class="filter-block p-b-15">
+            <button class="btn cta2 product-filter delete-filter waves-effect">{{ 'filters.delete'|trans }}</button>
+        </div>
+    {% endif %}
+
+    {% if from_brand %}
+        <div class="visible-xs-block visible-sm-block">
+            <div class="filter-block">
+                <div class="title">
+                    <a style="color:#000000" href="{{ url('asmodinefront_page_brands') }}"><i class="glyphicon glyphicon-refresh"></i> {{ 'main.change.brand'|trans }}</a>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    {% if from_category %}
+        <div class="visible-xs-block visible-sm-block">
+            <div class="filter-block">
+                <div class="title">
+                    <a style="color:#000000" href="{{ url('asmodinefront_page_categories') }}"><i class="glyphicon glyphicon-refresh"></i> {{ 'main.change.category'|trans }}</a>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    <input type="hidden" id="current_route" value="https://{{ app.request.httpHost ~ app.request.requestUri }}" />
+    <input type="hidden" id="filters_route" value="{{ url('asmodinefront_model_filters', {}, true) }}" />
+
+
+    {# Gender #}
+    {% if from_brand or from_search %}
+        <div class="filter-block">
+            <div class="title">
+                <i class="ion-bowtie"></i>
+                {{ 'filters.title.gender'|trans }}
+            </div>
+            <div class="content {% if active['gender'] is defined %}opened{% endif %}">
+                <ul>
+                    {% for name, count in aggs.cat_gender %}
+                        <li>
+                            <div class="checkbox checkbox-circle">
+                                <input data-id="gender.{{ loop.index }}" id="gender.{{ loop.index }}" class="styled" type="checkbox" name="gender_checkbox" data-type="gender" data-label="{{ name }}" {% if active['gender'] is defined and name in active['gender'] %}checked="checked"{% endif %}>
+                                <label for="gender.{{ loop.index }}" title="{{ count }} produits">
+                                    {{ categories_gender[name] }}
+                                </label>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+                <button class="btn cta2 product-filter apply-filter waves-effect">{{ 'filters.apply'|trans }}</button>
+            </div>
+        </div>
+    {% endif %}
+
+    {# Size #}
+    <div class="filter-block">
+        <div class="title">
+            <img class="upload-icon attribute-icon" src="/img/filters/taille.png" alt="">
+            {{ 'filters.title.size'|trans }}
+        </div>
+        <div class="content {% if active['size'] is defined %}opened{% endif %}">
+            <div id="size-filters">
+                <ul>
+                    {% for name, count in aggs.size %}
+                    <li>
+                        <div class="checkbox checkbox-circle">
+                            <input data-id="size.{{ loop.index }}" id="size.{{ loop.index }}" class="styled" type="checkbox" name="size_checkbox" data-type="size" data-label="{{ name }}" {% if active['size'] is defined and name in active['size'] %}checked="checked"{% endif %}>
+                            <label for="size.{{ loop.index }}">
+                                {{ name }}
+                            </label>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <button class="btn cta2 product-filter apply-filter waves-effect">{{ 'filters.apply'|trans }}</button>
+        </div>
+    </div>
+
+    {# Price #}
+    <div class="filter-block">
+        <div class="title">
+            <i class="ion-cash"></i>
+            {{ 'filters.title.price'|trans }}
+        </div>
+        <div class="content {% if active['price'] is defined %}opened{% endif %}">
+            {% set prices = ['0_50', '50_100', '100_200', '200_10000'] %}
+            <ul>
+            {% for name in prices %}
+                <li>
+                    <div class="checkbox checkbox-circle">
+                        <input data-id="price.{{ loop.index }}" id="price.{{ loop.index }}" class="styled" type="checkbox" name="price_checkbox" data-type="price" data-label="{{ name }}" {% if active['price'] is defined and name in active['price'] %}checked="checked"{% endif %}>
+                        <label for="price.{{ loop.index }}">
+                            {{ ('filters.price.' ~name)|trans }}
+                        </label>
+                    </div>
+                </li>
+            {% endfor %}
+            </ul>
+            <button class="btn cta2 product-filter apply-filter waves-effect">{{ 'filters.apply'|trans }}</button>
+        </div>
+    </div>
+
+
+    {# Categorie #}
+    {% if from_brand or from_search or from_gender %}
+        <div class="filter-block">
+            <div class="title">
+                <i class="ion-bowtie"></i>
+                {{ 'filters.title.category'|trans }}
+            </div>
+            <div class="content {% if active['category'] is defined %}opened{% endif %}">
+                <ul>
+                    {% for name, count in aggs.cat_level2 %}
+                        {% if categories_depth2[name] is defined %}
+                            <li>
+                                <div class="checkbox checkbox-circle">
+                                    <input data-id="category.{{ loop.index }}" id="category.{{ loop.index }}" class="styled" type="checkbox" name="category_checkbox" data-type="category" data-label="{{ name }}" {% if active['category'] is defined and name in active['category'] %}checked="checked"{% endif %}>
+                                    <label for="category.{{ loop.index }}" title="{{ count }} produits">
+                                        {{ categories_depth2[name] }}
+                                    </label>
+                                </div>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+                <button class="btn cta2 product-filter apply-filter waves-effect">{{ 'filters.apply'|trans }}</button>
+            </div>
+        </div>
+    {% endif %}
+
+    {# Color #}
+    <div class="filter-block">
+        <div class="title">
+            <img class="upload-icon attribute-icon" src="/img/filters/colors.png" alt="">
+            {{ 'filters.title.color'|trans }}
+        </div>
+        <div class="content {% if active['color'] is defined %}opened{% endif %}">
+            {% for name, count in aggs.color %}
+                <div class="checkbox-color {{ ('filters.color.checked.' ~ name)|trans }}" title="{{ ('filters.color.name.' ~name)|trans|capitalize }} ({{ count }} produits)">
+                    <input data-id="color.{{ loop.index }}" id="color.{{ loop.index }}" type="checkbox" name="color_checkbox" data-type="color" data-label="{{ name }}" {% if active['color'] is defined and name in active['color'] %}checked="checked"{% endif %}>
+                    {%  set trans_color = ('filters.color.hexa.' ~name)|trans %}
+                    <label for="color.{{ loop.index }}" style="{% if trans_color|length>8 %}background-image: url('{{ trans_color }}'); background-size: 22px;{% else %}background: {{ trans_color }}{% endif %}"></label>
+                </div>
+            {% endfor %}
+            <button class="btn cta2 product-filter apply-filter waves-effect">{{ 'filters.apply'|trans }}</button>
+        </div>
+    </div>
+
+    {% if not from_brand %}
+        <div class="filter-block">
+            <div class="title">
+                <i class="ion-bag"></i>
+                marque
+            </div>
+            <div class="content {% if active['shop'] is defined %}opened{% endif %}">
+                <ul>
+                    {% for name, count in aggs.brands|sort_alpha %}
+                        <li>
+                            <div class="checkbox checkbox-circle">
+                                <input data-id="shop.{{ loop.index }}" id="shop.{{ loop.index }}" class="styled" type="checkbox" name="brand_checkbox"  data-type="shop" data-label="{{ name }}" {% if active['shop'] is defined and name in active['shop'] %}checked="checked"{% endif %}>
+                                <label for="shop.{{ loop.index }}" title="{{ count }} produits">
+                                    {{ name }}
+                                </label>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+                <button class="btn cta2 product-filter apply-filter waves-effect">{{ 'filters.apply'|trans }}</button>
+            </div>
+        </div>
+    {% endif %}
+
+
+{% endspaceless %}

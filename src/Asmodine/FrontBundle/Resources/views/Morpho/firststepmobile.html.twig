@@ -1,0 +1,55 @@
+{% extends "AsmodineFrontBundle::layout.html.twig" %}
+
+{% block body_class %}{{ parent() }} user-creation{% endblock %}
+
+{% block body %}
+    <div class="measurement-banner-form">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-push-3">
+                    <h2>{{ 'profile.step.title'|trans }}</h2>
+                </div>
+            </div>
+            <div class="row p-t-30">
+                <div class="col-md-12">
+                    <form action="https://{{ app.request.httpHost ~ app.request.requestUri }}" method="post">
+                        <div class="row">
+                            <div class="col-md-12 text-center m-b-20">
+                                <p class="center">{{ 'profile.step.popup.text'|trans|raw }}</p>
+                                <p><a class="btn btn-primary w3-text-white cta2" href="/files/asmodine_metre-ruban.pdf" target="_blank">Télécharger le mètre ruban</a></p>
+                                <div class="col-md-6">
+                                    <div class="input-group form-group input-bordered">
+                                    <span class="input-group-addon">
+                                        <i class="icon-weight"></i>
+                                    </span>
+                                        <div>
+                                            {{ form_errors(form_popup.weight) }}
+                                            {{ form_widget(form_popup.weight, {attr: {'class' : 'form-control'}}) }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="input-group form-group input-bordered">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-arrows-v b-t-2-y b-b-2-y f-18"></i>
+                                    </span>
+                                        <div>
+                                            {{ form_errors(form_popup.height) }}
+                                            {{ form_widget(form_popup.height, {attr: {'class' : 'form-control'}}) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="w-100">
+                                {{ form_widget(form_popup.submit, {attr: {'class' : 'btn btn-primary w-100 waves-effect cta2'}}) }}
+                            </div>
+                        </div>
+                        {{ form_end(form_popup) }}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

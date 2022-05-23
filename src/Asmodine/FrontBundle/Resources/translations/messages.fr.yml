@@ -1,0 +1,504 @@
+' ': ''
+asmotaille:
+    know_size_on: tu veux connaître ta taille sur %brand%
+    register: inscris-toi
+    no_size: Pas de recommandation disponible
+    recommend: Nous vous recommandons la taille
+breadcrumb:
+    title:
+        home: Accueil
+        brands: Marques
+        categories: Liste des catégories
+        cookie: 'Politique des cookies'
+        cgu: CGU
+        concept: Concept
+        contact: Contact
+        partners: Nos partenaires
+cart:
+    title: 'Prêt à shopper'
+    no_products: vous n'avez pas encore ajouté de produit à votre panier
+category:
+    brand: 'Marques'
+    concept: 'Concept'
+    promo: 'Promos'
+    depth0:
+        man: homme
+        woman: femme
+email:
+    base:
+        ask_info: Demande d'informations
+    registration:
+        subject: 'Confirmation d''inscription'
+        title: Bienvenue sur Asmodine, %username% !
+        content: |
+            Merci d'avoir créé votre compte.<br>Découvrez tout le plaisir du shopping à votre taille sur Asmodine en cliquant sur le bouton ci-dessous:
+        link_text: Je valide mon adresse e-mail
+    registrationTemp:
+        subject: 'Confirmation d''inscription'
+        title: Bienvenue sur Asmodine!
+        content: |
+            Merci d'avoir créé votre profil rapide.<br><br>Votre mot de passe provisoire est :<br> %pass% <br><br>Découvrez tout le plaisir du shopping à votre taille sur Asmodine en cliquant sur le bouton ci-dessous:
+        link_text: Je valide mon adresse e-mail
+        remind: Pour des recommandations encore plus précises, téléchargez l'application Asmodine Body-scan, et finalisez votre profil.
+form:
+    common:
+        image:
+            add: Ajouter une image
+    email: Votre adresse mail
+    registration:
+        already_member: Vous avez déjà un compte ?
+        facebook_connect: Inscription avec Facebook
+        login_now: Connectez-vous !
+        submit: Créer mon compte
+        success: 'Votre inscription est enregistrée. Consultez vos mails pour confirmer et activer la création de votre compte Asmodine.'
+        success_application: 'Votre inscription est enregistrée. Merci de cliquer sur le bouton ci-dessous pour compléter votre profil.'
+        failure: 'Votre inscription est enregistrée. Cependant, une erreur est survenue lors de l''envoi du mail contenant votre code d''activation.'
+    submit: Enregistrer
+    user:
+        birthdate: Votre date de naissance au format jj/mm/aaaa
+        city: Votre ville
+        email: Votre adresse mail
+        email_confirmation: Confirmer votre adresse mail
+        email_different: Les deux adresses sont différentes
+        gender: Sexe
+        female: Femme
+        firstname: Votre prénom
+        lastname: Votre nom
+        male: Homme
+        newsletter: Newsletter
+        height: Votre taille
+        weight: Votre poids
+    profile:
+        label:
+            height: Taille en cm
+            weight: Poids en kg
+            shoulder: Largeur d'épaule en cm
+            chest: Tour de poitrine en cm
+            waist: Tour de taille en cm
+            waistTop: Tour de taille haute en cm
+            waistBottom: Tour de taille basse en cm
+            waist_top: Tour de taille haute en cm
+            waist_bottom: Tour de taille basse en cm
+            waist_2d: Largeur de la taille en cm
+            waist2d: Largeur de la taille en cm
+            hip: Tour de hanche en cm
+            hip_2d: Largeur des hanches en cm
+            hip2d: Largeur des hanches en cm
+            neck: Tour de cou en cm
+            bra: Tour de dessous de poitrine en cm
+            arm: Longueur du bras en cm
+            armTurn: tour de bras en cm
+            arm_turn: tour de bras en cm
+            armSpine: longueur des bras depuis la colonne vertébrale en cm
+            arm_spine: longueur des bras depuis la colonne vertébrale en cm
+            wrist: Tour de poignet en cm
+            shoulderToHip: Longueur de l'épaule à la hanche en cm
+            hollowToFloor: Creux du cou au sol en cm
+            insideLeg: Longueur d'entrejambe en cm
+            thigh: Tour de cuisse en cm
+            calf: Tour de mollet en cm
+            head: Tour de tête en cm
+            finger: Tour de doigt en cm
+            handLength: Longueur de la main en cm
+            handWidth: Largeur de la main en cm
+            footLength: Longueur du pied en cm
+            legLength: Longueur de jambe en cm
+            leg_length: Longueur de jambe en cm
+            footWidth: Largeur du pied en cm
+            hair: Vos cheveux
+            eyes: Vos yeux
+            skin: Votre peau
+            choice-hair: Choisissez votre couleur des cheveux
+            choice-eyes: Choisissez votre couleur des yeux
+            choice-skin: Choisissez votre teint de peau
+        measures: Mes mesures
+        morphologie: Ma morphologie
+        submit_measure: Enregistrer mes mesures
+        submit_morphological: Enregistrer mes valeurs de profil colorimétrique
+        title: Mon profil
+        various:
+            create_morpho: Créer mon profil morpho
+            modify: Modifier
+            morphotype_my: Mon profil colorimétrique
+            morphotype_header: Vous avez un profil colorimétrique de type
+            no_morphotype_yet: Pas encore de profil colorimétrique disponible car les données de votre profil sont insuffisantes.
+            see_tutorial: Voir le tutoriel
+            see_tutorial_all: Voir le tutoriel de mesure complet
+    wishlist:
+        name: Nom de la wishlist
+        submit: Ajout à une wishlist
+fosuser:
+    security:
+        login:
+            title: Me connecter
+home:
+    banner:
+        title: 'Donnez du style à votre morphologie'
+        subtitle: 'Du XS au 6XL'
+        discover_concept: 'Je découvre Asmodine'
+        search_placeholder: 'Je cherche un vêtement, une marque...'
+        woman: femme
+        man: homme
+    beta:
+        popover: Ce site est actuellement en BETA. Des améliorations seront apportées dans la version définitive.
+        title: Site BETA
+    blog:
+        title: ', le blog'
+        subtitle: 'Les tendances mode du moment'
+        read: "lire l'article"
+    category:
+        clothes: vêtements
+        man: Homme
+        woman: Femme
+    see:
+        concept: voir le concept
+        trend: voir la tendance
+filters:
+    apply: Appliquer mon filtre
+    delete: Supprimer mon filtre
+    title:
+        category: Categorie
+        color: Couleur
+        gender: Genre
+        price: Prix
+        size: Taille
+    color:
+        name:
+            silver: Argent
+            black: Noir
+            beige: Beige
+            gold: Or
+            white: Blanc
+            orange: Orange
+            blue: Bleu
+            pink: Rose
+            gray: Gris
+            red: Rouge
+            yellow: Jaune
+            green: Vert
+            brown: Marron
+            purple: Violet
+            multicolored: Multicolore
+            printed: Imprimés
+            highlighters: Fluos
+        hexa:
+            silver: "/img/filters/colors/argent.jpg"
+            black: "#000000"
+            beige: "#C8AD7F"
+            gold: "/img/filters/colors/or.jpg"
+            white: "#FFFFFF"
+            orange: "#FFA500"
+            blue: "#0000FF"
+            pink: "#FD6C9E"
+            gray: "#CECECE"
+            red: "#ED0000"
+            yellow: "#EDFF0C"
+            green: "#3A9D23"
+            brown: "#582900"
+            purple: "#660099"
+            multicolored: "/img/filters/colors/multicolored.png"
+            printed: "/img/filters/colors/printed.png"
+            highlighters: "/img/filters/colors/fluo.jpg"
+        checked:
+            silver: black
+            black: white
+            beige: white
+            gold: white
+            white: black
+            orange: white
+            blue: white
+            pink: white
+            gray: black
+            red: white
+            yellow: black
+            green: white
+            brown: white
+            purple: white
+            multicolored: white
+            printed: white
+            highlighters: black
+    price:
+        0_50: "Inférieur à 50 €"
+        50_100: "Entre 50 et 100 €"
+        100_200:  "Entre 100 et 200 €"
+        200_10000: "Supérieur à 200 €"
+
+main:
+    change:
+        category: Changer de catégorie
+        brand: Changer de marque
+    ok: OK
+    complete_profile: Compléter mon profil
+    search:
+        placeholder: 'Je cherche un vêtement, une marque...'
+model:
+    nb_models: "{0} aucun article|{1} 1 article|]1,Inf[ %count% articles"
+    no_model: Aucun produit ne correspond à votre demande.
+    advice_unavailable: "Le conseil morpho n'est pas disponible pour cet article"
+    description:
+        category: 'Retrouvez nos meilleures recommandations de %name% %gender% sur Asmodine.'
+    filter-by:
+        title: Trier par
+        price_asc: Prix croissant
+        price_desc: Prix décroissant
+    reseller: 'Vendu par '
+    goto_asmotaille: 'acheter'
+    add_to_cart: 'ajouter au prêt à shopper'
+    available_in: 'Disponible en'
+    asmoconseil: 'ASMOCONSEIL'
+    size_advice_your: |
+       Pour cet article,
+       Asmodine vous conseille
+       la taille suivante :
+    ok_note: C'est noté !
+    good_for_you: |
+         Asmodine vous conseille
+         cet article :
+    not_bad: |
+         Pour cette article,
+         Asmodine vous informe
+         des éléments suivants :
+    not_at_all: |
+         Mais Asmodine
+         vous informe que cet article
+         n’est pas idéal pour votre profil :
+    color_3: Le panel de couleurs <b>%values%</b> convient parfaitement à votre profil colorimétrique.
+    color_2: Le panel de couleurs <b>%values%</b> convient moyennement à votre profil colorimétrique.
+    color_1: Le panel de couleurs <b>%values%</b> n'est pas adapté à votre profil colorimétrique.
+    personal-shopper: 'Asmoconseil'
+    personal-shopper-deactivate: 'Pour visualiser tous les produits de cette page, merci de désactiver Asmoconseil ci dessous.'
+    personal-shopper-deactivate-filters: 'Pour visualiser tous les produits de cette page, merci de modifier les filtres ou de désactiver Asmoconseil ci dessous.'
+    infobox: 'Asmodine me conseille des articles qui correspondent à mes goûts'
+page:
+    brands:
+        title: Nos Marques
+    categories:
+        title: Catégories
+    concept:
+        title: Le concept
+        subtitle_1: Donnez du style à votre morphologie !
+        paragraph_1:
+            title: Ce qui manquait aux boutiques en ligne jusqu'à aujourd'hui ?
+            content: |
+                Pouvoir essayer, avant d'acheter, les articles sur votre silhouette : en fonction de tous les détails de <b>votre morphologie</b>.
+        paragraph_2:
+            title: Et Asmodine est née !
+            content_1: |
+                Dans la boutique sur mesure Asmodine, vous êtes sûr(e) de trouver <b>la taille qui vous va vraiment bien</b> !
+                Belle carrure, taille fine, longues jambes... chaque personne a une silhouette qui lui est particulière et qui ne peut correspondre
+                à des standards. D'autre part, chaque marque crée ses collections selon des modèles différents, une taille 40 ne sera jamais la même
+                chez l'une ou l'autre.
+            content_2: |
+                Chez Asmodine nous vous proposons d'abord de <b>prendre les mesures complètes</b> de votre silhouette pour trouver votre taille, unique, pas
+                celle qui correspond à un 38 ou à un L. On s'occupe de tout : laissez-vous guider.
+        notice: |
+            Lorsque vous voyez <b>ce logo</b> en bas d'un produit, <b>vous pouvez bénéficier des conseils Asmodine</b> pour savoir quelle taille choisir en fonction
+            mesures que nous avons prises !
+        slogan: |
+            Avec Asmodine, faire vos achats en ligne devient encore plus facile qu'en boutique, un vrai bonheur !
+        subtitle_2: Comment souhaitez vous prendre vos mesures ?
+        measure_choice:
+            yourself:
+                title: Vous même
+                link: Je crée mon profil morpho
+                already_link: Je modifie mon profil morpho
+            smartphone:
+                title: Avec votre smartphone
+                link: Je télécharge l'appli
+            scanner:
+                title: Avec un scanner en boutique
+                link: Je trouve une boutique près de chez moi
+
+    contact:
+        title: Contact
+        question: Vous souhaitez nous contacter ?
+        societe: Asmodine
+        info: |
+            Euratechnologie Incubateur<br/>
+            165 Avenue de Bretagne<br/>
+            59 000 Lille<br/>
+            cmarquis@asmodine.com<br/>
+            06 26 09 49 77
+profile:
+    morpho_infos: Mon profil
+    my_wishlist: Mes wishlists
+    picture: Ma photo de profil
+    morphoprofile:
+        header: Vous avez une morphologie en
+    step:
+        label: Étape
+        title: Création de votre profil morpho
+        title_measure:
+            height: Saisissez votre taille en cm
+            weight: Saisissez votre poids en kg
+            arm: Longueur de bras en cm
+            armTurn: tour de bras en cm
+            arm_turn: tour de bras en cm
+            armSpine: longueur des bras depuis la colonne vertébrale en cm
+            arm_spine: longueur des bras depuis la colonne vertébrale en cm
+            bra: Tour de dessous de poitrine en cm
+            chest: Tour de poitrine en cm
+            calf: Tour de mollet en cm
+            finger: Tour de doigt en cm
+            foot_length: Longueur des pieds en cm
+            foot_width: Largeur des pieds en cm
+            hand_length: Longueur des mains en cm
+            hand_width: Largeur des mains en cm
+            hollow_to_floor: Creux du cou au sol en cm
+            head: Tour de tête en cm
+            hip: Tour de hanche en cm
+            hip_2d: Largeur des hanches en cm
+            hip2d: Largeur des hanches en cm
+            inside_leg: Longueur d'entrejambe en cm
+            legLength: Longueur de jambe en cm
+            leg_length: Longueur de jambe en cm
+            neck: Tour de cou en cm
+            shoulder: Largeur d'épaule en cm
+            shoulder_to_hip: Longueur de l'épaule à la hanche en cm
+            thigh: Tour de cuisse en cm
+            waist: Tour de taille en cm
+            waistTop: Tour de taille haute en cm
+            waistBottom: Tour de taille basse en cm
+            waist_top: Tour de taille haute en cm
+            waist_bottom: Tour de taille basse en cm
+            waist_2d: Largeur de la taille en cm
+            waist2d: Largeur de la taille en cm
+            wrist: Tour de poignet en cm
+            skin: Couleur de peau
+            eyes: Couleur des yeux
+            hair: Couleur des cheveux
+        previous_step: Je retourne à l'étape précédente
+        next_step: Je vais à l'étape suivante
+        video: 'Cette video va vous guider durant les %nb% étapes à suivre afin de prendre toutes les mesures dont nous avons besoin pour établir votre profil morphologique.'
+        popup:
+            text: |
+                C'est parti ! </br></br>
+                En quelques minutes à peine nous allons vous guider </br>
+                pour prendre toutes les mesures nécessaires à la détermination de votre profil morpho. </br></br>
+                C'est très simple, vous n'avez besoin que <b>d'un mètre ruban !</b> </br></br>
+                Avant tout, merci de renseigner votre poids et votre taille.
+size:
+    advice:
+        unknown: Asmodine ne connait pas votre <b>%body_part%</b>.
+        smaller_than: Ce produit sera serré de %diff% cm niveau <b>%body_part%</b>.
+        smaller2_than: Ce produit sera trop court de %diff% cm niveau <b>%body_part%</b>.
+        greater_than: Ce produit sera ample de %diff% cm niveau <b>%body_part%</b>.
+        greater2_than: Ce produit sera trop long de %diff% cm niveau <b>%body_part%</b>.
+        perfect: Ce produit vous conviendra parfaitement niveau <b>%body_part%</b>.
+    body_part:  
+        shoulder: largeur d'épaules
+        chest: tour de poitrine
+        waist: tour de taille
+        waistTop: tour de taille haute
+        waistBottom: tour de taille basse
+        waist_top: tour de taille haute
+        waist_bottom: tour de taille basse
+        waist_2d: Largeur de la taille
+        waist2d: Largeur de la taille
+        hip: tour de hanche
+        hip_2d: Largeur des hanches
+        hip2d: Largeur des hanches
+        neck: tour de cou
+        bra: tour de dessous de poitrine
+        arm: longueur des bras
+        armTurn: tour de bras
+        arm_turn: tour de bras
+        armSpine: longueur des bras depuis la colonne vertébrale
+        arm_spine: longueur des bras depuis la colonne vertébrale
+        wrist: tour de poignet
+        shoulderToHip: longueur de l'épaule à la hanche
+        shoulder_to_hip: longueur de l'épaule à la hanche
+        hollowToFloor: la longueur du creux du cou au sol
+        hollow_to_floor: la longueur du creux du cou au sol
+        insideLeg: longueur d'entrejambe
+        inside_leg: longueur d'entrejambe
+        thigh: tour de cuisse
+        calf: tour de mollet
+        head: tour de tête
+        finger: tour de doigt
+        legLength: Longueur de jambe
+        leg_length: Longueur de jambe
+        handLength: longueur de la main
+        hand_length: longueur de la main
+        handWidth: largeur de la main
+        hand_width: largeur de la main
+        footLength: longueur du pied
+        foot_length: longueur du pied
+        footWidth: largeur du pied
+        foot_width: largeur du pied
+user:
+    account:
+        create: Création de votre compte
+        create_choice: "Comment souhaitez-vous créer votre profil morpho ?"
+        create_temp: Créez votre profil rapide
+        create_temp_end: Création terminée !
+        proposal_create: Donnez du style à votre morphologie !
+    register: 'Créer mon<br />profil morpho'
+    login: 'se connecter'
+    logout: 'déconnexion'
+    logout_profile: Se déconnecter
+    create_morphological_profile: Je crée
+    create_morphological_profile_mobile: Je crée mon profil morpho
+    modify_morphological_profile: Je modifie
+    modify_morphological_profile_mobile: Je modifie mon profil morpho
+    my_profil: ' mon profil'
+    my_morpho_profil: ' mon profil<br/>morpho'
+    personnal_infos: Mes infos perso
+    profile: 'mon compte'
+    profile_completed_at: Votre profil est complété à
+    picture: 'Votre Avatar'
+search:
+    description: ''
+    title: Recherche
+security:
+    login:
+        connection: Connexion
+        facebook-connect: Facebook connect
+        name: Votre adresse email
+        forgotten-password: Mot de passe oublié ?
+        no-account: Vous n'avez pas de encore compte Asmodine ?
+        password: Votre mot de passe
+        register-now: Inscrivez-vous !
+        submit:  Se connecter
+wishlist:
+    new: Nouvelle wishlist
+
+description_morpho:
+    female:
+        v: |
+            <h2>Athlétique et charismatique.</h2>
+            <p/>La morphologie en V est une silhouette sportive. Vos épaules sont droites et plus larges que vos hanches, ce qui vous donne beaucoup d’allure et une forte prestance.<br/>
+            L’enjeu principal de votre apparence sera de mettre en valeur votre féminité et d’éviter les pièces qui auront tendance à souligner le côté masculin d’une carrure « carrée ».<br/>
+            Pour le haut du corps, l’idée est d’arrondir les angles, d’apporter de la douceur. Vous pourrez facilement atteindre ce résultat en choisissant des tops fluides, dans des matières fines et loose.<br/>
+            Favorisez les tops à manche en limitant les imprimés et les bandes horizontales, évitez les vestes très structurées, les cols bateau, privilégiez les décolletés en V si vous avez une petite poitrine.<br/>
+            Pour équilibrer votre physique, jouez sur les pantalons à poches afin d'élargir visuellement vos hanches discrètes. Les jupes trapèzes et les robes évasées seront parfaites pour dessiner les hanches et féminiser un peu votre magnifique allure.</p>
+        8: |
+            <h2>Très féminine vos courbes sont douces et arrondies.</h2>
+            <p>La morphologie en 8 est sans doute la silhouette la plus féminine de toute. Votre morphologie est caractérisée par des épaules arrondies suivant le même alignement que les hanches. Votre taille est marquée et est à mettre en avant grâce à des vêtements cintrés et ceinturés. Vous pouvez vous permettre de porter presque tout type de vêtement. Pour sublimer au max votre physique de rêve, privilégiez les cache-cœurs, les robes cintrées et les vestes ajustées. Les jeans slims, les jupes crayons et les cols ronds seront également du plus bel effet.</p>
+        a: |
+            <h2>Très féminine, votre silhouette incarne la fertilité.</h2>
+            <p>La silhouette en A est l'une des morphologies les plus répandues chez la femme. Les épaules sont plus étroites que les hanches et la taille reste marquée. Pour sublimer votre morphologie, focaliser vos efforts sur le haut de votre corps. Si vous avez une petite poitrine, vous pouvez abuser des cols en V pour la valoriser. Les cols bateau sont parfaits pour élargir visuellement votre carrure et équilibrer la silhouette. Les vestes épaulées structureront votre buste et les tops imprimés y apporteront suffisamment de matière pour vous sublimer.<br/>
+            Vous portez à merveille les jupes longues ou robes longues fluides à bretelles qui mettront en valeur la finesse de votre buste et estomperont les rondeurs de vos hanches.</p>
+        x: |
+            <h2>Beaucoup d’allure pour votre silhouette féminine et équilibrée. </h2>
+            <p>La silhouette en X est équilibrée et harmonieuse. Votre silhouette est moins voluptueuse que la silhouette en 8 mais elle est également très féminine. Les épaules et les hanches sont dans le même alignement et la taille est marquée. Les femmes X sont plutôt fines avec des formes peu prononcées. Vous avez de la chance, tout vous va ! Vous aimez le brillant, les imprimés et la couleur ? Parfait, vous pouvez en abuser pour apporter du volume à votre silhouette. Les vestes se choisiront cintrées, comme la majorité des pièces que vous allez choisir, pour mettre en avant votre finesse et votre jolie taille. Si vous avez les jambes fines, n'hésitez pas à porter des pantalons enduits ou des collants brillants.</p>
+        h: |
+            <h2>Longiligne, votre silhouette est équilibrée.</h2>
+            <p>La morphologie en H ou en rectangle est droite et longiligne. Les épaules et les hanches sont dans le même alignement et la taille est peu marquée. Pour les pantalons, vous pouvez vous permettre les slims mais également les pantalons droits toujours en taille basse. Pour les robes une coupe droite ou un style empire sera idéal pour vous sublimer. Pour le haut, favoriser les pièces fluides ; les blouses et tuniques sont faites pour vous ! Elles permettront de masquer votre taille peu marquée, tout en féminité. La ceinture n'est en générale pas conseillée si vous la portez à la taille mais, elle peut accessoiriser vos tenues si vous la portez tombante sur les hanches.</p>
+        o: |
+            <h2>Une morphologie féminine et pulpeuse.</h2>
+            <p>La silhouette par excellence des femmes pulpeuses. Vous pouvez retrouver le sourire, le noir n'est pas votre seule option. Toute tenue monochrome peut vous sublimer. Faites vous plaisir en abusant des décolletés et des cols pour attirer l'attention sur le haut du votre corps. Choisissez plutôt un col carré si vous ne souhaitez pas attirer l'attention sur votre poitrine. Attention à ne pas tomber dans le piège des vêtements trop larges qui ne masqueront pas vos rondeurs mais les accentuerons. Jupes droites, robes trapèze ou fluide, pantalons fluides sans poche ni fioriture. Les tailles hautes seront parfaites si vous souhaitez masquer votre ventre. Choisissez des vêtements à votre taille et vous serez divine.</p>
+
+    male:
+        a: |
+            <h2>Masculinité et douceur</h2>
+            <p>La morphologie en A se caractérise par des épaules étroites et légèrement tombantes. Elle possède également des hanches larges et un peu de ventre. Pour rééquilibrer la silhouette, portez votre attention sur des vestes et manteaux épaulés, le trench-coat vous va à merveille. Les vestes avec des cols effets mouton sera parfaite pour donner du volume au haut de votre corps. Les pulls et t-shirts peuvent se choisir avec des imprimés horizontaux sur la partie haute pour élargir visuellement les épaules. Pour les matières, optez pour la fluidité et des textures souples. Pour le bas, évitez les pantalons trop moulants qui risquent d'attirer l'attention sur vos hanches et préférez les coupes régulars, bootcuts ou looses.</p>
+        v: |
+            <h2>La carrure des sportifs</h2>
+            <p>La morphologie en V fait rêver tous les hommes. C'est la silhouette masculine de l'homme fort aux épaules développées et au buste carré. Vous avez donc les épaules plus larges que les hanches et pour un homme, c'est le must. Pour mettre en valeur votre physique, n'hésitez pas à choisir des vêtements ajustés. Chemise cintrée, t-shirt près du corps seront à avoir dans votre garde-robe. Pour les pantalons, jouez sur les slims et pantalons ajustés. Si vous avez les jambes fines, orientez-vous vers des pantalons texturés ou sur des imprimés pour éviter de déséquilibrer votre silhouette.</p>
+        h: |
+            <h2>Masculin et protecteur</h2>
+            <p>La morphologie en H est longiligne. Les épaules sont droites et dans l'alignement des hanches. En règle générale, vous pouvez tout porter si vous choisissez des coupes structurées et ajustée. Si vous souhaitez visuellement élargir votre buste, choisissez des hauts avec des rayures horizontales sur la partie supérieure du vêtement. Les vestes peuvent se choisir épaulées dans le même but. Pour les jeans et pantalons, orientez-vous vers des pièces ajustées avec des poches discrètes afin de ne pas élargir visuellement vos hanches.</p>
+        o: |
+            <h2>Fort et rassurant</h2>
+            <p>La morphologie en O se caractérise par sa rondeur. Vous avez les épaules larges et arrondies, du ventre et vos hanches sont dans l'alignement des épaules. Favorisez les vêtements ajustés mais pas moulants pour allonger votre silhouette. Les vêtements trop larges risqueraient de vous tasser. Pour les hauts, favoriser les coupes droites, qui suivront les courbes de votre corps sans vous mouler ni vous noyer sous des kilomètres de tissu. Pour les bas, idem, un pantalon ou un jean à la coupe droite ou légèrement fuselée sera à favoriser. Le slim reste possible si vos cuisses ne sont pas trop volumineuses.</p>

@@ -1,0 +1,60 @@
+@import "variables";
+
+.b-2-y {
+    border: 2px solid $yellow;
+}
+
+.b-t-2-y {
+    border-top: 2px solid $yellow;
+}
+
+.b-b-2-y {
+    border-bottom: 2px solid $yellow;
+}
+
+.float-r {
+    float: right;
+}
+
+.float-l {
+    float: left;
+}
+
+.asmo-yellow, .asmo-yellow:hover {
+    color: $white;
+    background-color: $yellow;
+}
+
+.color-asmo {
+    color: $yellow;
+}
+
+a:hover {
+    &.color-asmo {
+        color: $yellow-light;
+    }
+}
+
+.f-150 {
+    font-size: 150px !important;
+}
+
+.f-asmo-style {
+    font-family: $oswald !important;
+}
+
+.f-lighter {
+    font-weight: lighter !important;
+}
+.line-v{
+    border-right: 1px solid #5e5e5e;
+}
+.apps{
+    font-size: 110%;
+    img{
+        max-width: 120px;
+    }
+}
+.a-color{
+    color: rgb(219, 177, 93);
+}

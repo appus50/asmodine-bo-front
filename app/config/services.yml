@@ -1,0 +1,29 @@
+# Learn more about services, parameters and containers at
+# https://symfony.com/doc/current/service_container.html
+parameters:
+    #parameter_name: value
+
+services:
+    _defaults:
+        autowire: false
+        autoconfigure: false
+        public: false
+
+    # makes classes in src/AppBundle available to be used as services
+    # this creates a service per class whose id is the fully-qualified class name
+    Asmodine\FrontBundle\:
+        resource: '../../src/Asmodine/FrontBundle/*'
+        exclude: '../../src/Asmodine/FrontBundle/{Entity,Repository,Twig,Tests,Resources}'
+
+    # controllers are imported separately to make sure they're public
+    # and have a tag that allows actions to type-hint services
+    Asmodine\FrontBundle\Controller\:
+        resource: '../../src/Asmodine/FrontBundle/Controller'
+        public: true
+        tags: ['controller.service_arguments']
+
+    Asmodine\FrontBundle\EventListener\ExceptionListener:
+        arguments:
+            - "@router"
+        tags:
+            - { name: kernel.event_listener, event: kernel.exception }

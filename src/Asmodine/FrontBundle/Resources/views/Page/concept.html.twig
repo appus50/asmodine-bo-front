@@ -1,0 +1,64 @@
+{% extends "AsmodineFrontBundle:Page:layout.html.twig" %}
+
+{% block content %}
+    <div class="col-md-12">
+        <div class="row presentation">
+            <div class="col-md-7 col-sm-12 col-xs-12 content">
+                <h1>{{ 'page.concept.title'|trans }}</h1>
+                <h2 class="light-title">{{ 'page.concept.subtitle_1'|trans|raw }}</h2>
+                <h3 class="dark-title">{{ 'page.concept.paragraph_1.title'|trans|raw }}</h3>
+                <p>{{ 'page.concept.paragraph_1.content'|trans|raw }}</p>
+                <h3 class="light-title">{{ 'page.concept.paragraph_2.title'|trans }}</h3>
+                <p>{{ 'page.concept.paragraph_2.content_1'|trans|raw }}</p>
+                <p>{{ 'page.concept.paragraph_2.content_2'|trans|raw }}</p>
+                <p>
+                    <div class="notice-block">
+                        <div class="notice-text">{{ 'page.concept.notice'|trans|raw }}</div>
+                    </div>
+                </p>
+                <h3 class="light-title">{{ 'page.concept.slogan'|trans }}</h3>
+            </div>
+            <div class="col-md-5 col-sm-12 col-xs-12 illustration">
+                <img src="{{ asset('/img/concept/asmodine-concept-morpho.jpg') }}" />
+            </div>
+        </div>
+
+        <div class="row video">
+            <div class="col-md-12">
+                <video controls class="w-100">
+                    <source src="{{ asset('/videos/concept/lifestyle.mp4') }}" type="video/mp4">
+                </video>
+            </div>
+        </div>
+
+        <div class="row measurements">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <h2 class="light-title">{{ 'page.concept.subtitle_2'|trans }}</h2>
+            </div>
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="col-md-3 col-sm-12 col-xs-12 measurement-block first">
+                    <div class="choice-icon"><a href="/files/asmodine_metre-ruban.pdf" target="_blank"><img src="{{ asset('/img/concept/asmodine-vous-meme.png') }}" /></a></div>
+                    <div class="choice-label">{{ 'page.concept.measure_choice.yourself.title'|trans }}</div>
+                    {#  FIXME   <a data-toggle="modal" href="{% if app.user %}{{ url('profile_step') }}{% else %}#loginModal{% endif %}" class="btn cta2 waves-effect">
+                         {% if app.user and app.user.hasPhysicalProfile %}
+                               {{ 'page.concept.measure_choice.yourself.already_link'|trans }}
+                           {% else %}
+                               {{ 'page.concept.measure_choice.yourself.link'|trans }}
+                           {% endif %}
+                    </a>#}
+                </div>
+                <div class="col-md-3 col-md-offset-1 col-sm-12 col-xs-12 measurement-block" data-toggle="popover" data-html="true" data-trigger="hover click" data-placement="top" data-content="Scanner votre corps avec 2 photos<br />et répondez à 3 questions simples<br />pour obtenir automatiquement<br />vos mesures.<br /><br />Arrive bientôt ! ">
+                    <div class="choice-icon"><img src="{{ asset('/img/concept/asmodine-smartphone.png') }}" /></div>
+                    <div class="choice-label">{{ 'page.concept.measure_choice.smartphone.title'|trans }}</div>
+                    {#<a href="#" class="btn cta2 waves-effect">{{ 'page.concept.measure_choice.smartphone.link'|trans }}</a>#}
+                </div>
+                <div class="col-md-3 col-md-offset-1 col-sm-12 col-xs-12 measurement-block" data-toggle="popover" data-html="true" data-trigger="hover click" data-placement="top" data-content="Scanner votre corps en 3D<br />dans les magasins partenaires.<br /><br />Réservez une numérisation du corps 3D session près de chez vous.<br /><br /><i>Uniquement sur la région Lilloise.</i><br /><br />Arrive bientôt ! ">
+                    <div class="choice-icon"><img src="{{ asset('/img/concept/asmodine-scanner.png') }}" /></div>
+                    <div class="choice-label">{{ 'page.concept.measure_choice.scanner.title'|trans }}</div>
+                    {#<a href="#" class="btn cta2 waves-effect">{{ 'page.concept.measure_choice.scanner.link'|trans }}</a>#}
+                </div>
+            </div>
+        </div>
+        {{ render_esi(url('asmodinefront_fragment_newsletter')) }}
+    </div>
+{% endblock %}

@@ -1,0 +1,74 @@
+<footer id="footer">
+    <div class="container">
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+            <div class="row left-block">
+                {% for gender, categories in gender_categories %}
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <div class="title">
+                            {{ ('footer.' ~ gender)|trans }}
+                        </div>
+                        <ul>
+                            {% for category in categories %}
+                                <li><a href="{{ url('asmodinefront_model_category', {'path': category.path }) }}">{{ category.name }}</a></li>
+                            {% endfor %}
+                            {#<li><a href="#" class="italic">{{ 'footer.more.categories'|trans }}</a></li>#}
+                        </ul>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+            <div class="row text-center">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="title">
+                        {{ 'footer.asmodine'|trans }}
+                    </div>
+                    <div class="p-b-20 f-11">
+                        {{ 'footer.presentation'|trans }}
+                    </div>
+                    <div class="social">
+                        {% for network in ['facebook', 'pinterest', 'instagram', 'linkedin', 'twitter'] %}
+                            <a href="{{ ('social.' ~ network ~ '.url')|trans }}" target="_blank">
+                                <i class="ion-social-{{ network }}"></i>
+                            </a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+            <div class="row right-block">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                    <div class="title">
+                        {{ 'footer.brands'|trans }}
+                    </div>
+                    <ul>
+                        {% for brand in brands %}
+                            <li><a href="{{ url('asmodinefront_model_brand', {'slug': brand.slug}, true) }}">{{ brand.name }}</a></li>
+                        {% endfor %}
+                        <li><a href="{{ url('asmodinefront_page_brands', {}, true) }}" class="italic">{{ 'footer.more.brands'|trans }}</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                    <div class="title">
+                        {{ 'footer.help_and_contact'|trans }}
+                    </div>
+                    <ul>
+                        {#<li><a href="{{ path('asmodinefront_page_contact') }}">{{ 'footer.links.contact'|trans }}</a></li>#}
+                        <li><a href="mailto:contact@asmodine.com">{{ 'footer.links.contact'|trans }}</a></li>
+                        <li><a href="{{ url('asmodinefront_page_brands', {}, true) }}">{{ 'footer.links.brands'|trans }}</a></li>
+                        <li><a href="{{ url('asmodinefront_page_partners', {}, true) }}">{{ 'footer.links.partners'|trans }}</a></li>
+                        {#<li><a href="#">{{ 'footer.links.sellers'|trans }}</a></li>#}
+                        <li><a href="{{ 'social.blog.url'|trans }}" target="_blank" rel="noopener noreferrer">{{ 'footer.links.blog'|trans }}</a></li>
+                        <li><a href="mailto:contact@asmodine.com">{{ 'footer.links.jobs'|trans }}</a></li>
+                        {#<li><a href="#">{{ 'footer.links.terms'|trans }}</a></li>#}
+                        <li><a href="{{ url('asmodinefront_page_cgu', {}, true) }}" rel="nofollow">{{ 'footer.links.legal'|trans }}</a></li>
+                        {#<li><a href="#">{{ 'footer.links.security'|trans }}</a></li>#}
+                        <li><a href="{{ url('asmodinefront_page_cookies', {}, true) }}" rel="nofollow">{{ 'footer.links.cookies'|trans }}</a></li>
+                        {#<li><a href="#">{{ 'footer.links.faq'|trans }}</a></li>#}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

@@ -1,0 +1,34 @@
+services:
+    # Services
+    asmodine.front.email:
+        class: Asmodine\FrontBundle\Service\EmailService
+        arguments: ['@asmodine.common.email', '@templating', '@translator.default']
+
+    asmodine.front.back_api:
+        class: Asmodine\FrontBundle\Service\BackApiService
+        arguments: ['@asmodine.common.api_client', '@monolog.logger.asmodine_front_user']
+        tags:
+            -  { name: doctrine.entity_listener }
+
+    # Security
+    asmodine.front.security.authentication_success_handler:
+        class:  Asmodine\FrontBundle\Security\AuthenticationSuccessHandler
+        arguments:  ['@session', '@router', '@security.authorization_checker']
+
+    # Twig
+    asmodine.front.twig.user_extension:
+        class: Asmodine\FrontBundle\Twig\UserExtension
+        arguments: ['@doctrine.orm.default_entity_manager']
+        tags:
+            - { name: twig.extension }
+
+    # Listener
+    asmodine.front.doctrine.entity_listener_resolver:
+        class: Asmodine\FrontBundle\Doctrine\EntityListenerResolver
+        arguments: ['@service_container']
+
+    asmodine.front.entity_listener.physical_profile:
+        class: Asmodine\FrontBundle\Entity\Listener\PhysicalProfileListener
+        arguments: ['@asmodine.front.back_api','@session']
+        tags:
+            -  { name: doctrine.entity_listener }

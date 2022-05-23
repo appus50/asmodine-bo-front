@@ -1,0 +1,47 @@
+<div class="col-md-12 u1200-p0">
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 social-network-block">
+            <img class="w-100" src="{{ asset('/img/background/asmodine-follow-us.jpg') }}"/>
+            <div class="informations">
+                <div class="logo hidden-xs">
+                    <img class="filter-invert" src="{{ asset('/img/logo/asmodine-expanded.png') }}" alt=""/>
+                </div>
+                <div class="text">
+                    {{ 'newsletter.follow_us'|trans }}
+                </div>
+                <div class="social">
+                    {% for network in ['facebook', 'twitter', 'pinterest', 'googleplus', 'instagram'] %}
+                        <a href="{{ ('social.' ~ network ~ '.url')|trans }}" target="_blank" rel="noopener noreferrer">
+                            <i class="ion-social-{{ network }}"></i>
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 newsletter-block">
+            <img class="w-100" src="{{ asset('/img/background/asmodine-newsletter.jpg') }}"/>
+            <div class="informations">
+                <div class="text">
+                    {{ 'newsletter.title'|trans }}
+                </div>
+                <div class="logo hidden-xs">
+                    <img class="filter-invert" src="{{ asset('img/logo/asmodine-expanded.png') }}" alt=""/>
+                </div>
+                <div class="register vertical-align">
+                    {{ form_start(form_newsletter) }}
+                    <div class="row">
+                        <div class="col-md-6">
+                            {{ form_row(form_newsletter.email) }}
+                        </div>
+                        <div class="col-md-6 p-l-0">
+                            <i class="btn waves-input-wrapper waves-effect" style="color:rgb(255, 255, 255);background:rgb(0, 0, 0)">
+                                {{ form_row(form_newsletter.submit) }}
+                            </i>
+                        </div>
+                    </div>
+                    {{ form_end(form_newsletter) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

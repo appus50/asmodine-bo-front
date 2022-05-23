@@ -1,0 +1,41 @@
+{% extends "AsmodineFrontBundle:Page:layout.html.twig" %}
+
+{% block content %}
+<section id="main" class="bg-white contact">
+    <div class="container">
+        <div class="col-md-12 ">
+            <h1>Nos Partenaires</h1>
+
+            <p>Nos partenaires nous accompagnent.</p>
+            <p>Nous remercions nos partenaires qui nous soutiennent depuis le début de l'aventure Asmodine.</p>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row row-partners">
+            {% for name, datas in {
+                'Euratechnologies': {img: 'logo-euratechnologie.png', url: 'https://www.euratechnologies.com'},
+                'Mazars': {img: 'mazars.png', url: 'https://www.mazars.fr'},
+                'VillageCA': {img: 'villagebyCA.png', url:  'http://www.levillagebyca.com/village/le-village-by-ca-nord-de-france'},
+                'Pulpsoft': {img: 'pulpsoft.png', url:  'http://pulpsoft.fr'},
+                'Actemis': {img: 'actemis.jpg', url:  'http://www.actemis.com'},
+                'Bpi': {img: 'Bpi.jpg', url:  'http://www.bpifrance.fr'},
+                'Nord France Innovation Développement': {img: 'NFID_HD.jpg', url:  'http://www.jinnove.com'},
+                'Syneriance': {img: 'logo100Texte.png', url:  'https://www.syneriance.fr'},
+                'Capitani-Moritz': {img: 'logo-capitani-moritz-reseaux-sociaux4.png', url:  'http://capitani-moritz.fr'},
+                'Skapane': {img: 'skapane.png', url:  'http://skapane.com'},
+                'Mediapilote': {img: 'mediapilote.jpg', url:  'https://www.mediapilote.com'},
+                'FrenchTech': {img: 'Frenchtech.jpg', url:  'http://www.lafrenchtech.com'},
+                'LionClub': {img: 'lionclub.jpg', url:  'http://lions-de-france.org'},
+                'Adix': {img: 'Logo-Adix.jpg', url:  'http://www.adix.fr/adix/'},
+            } %}
+                <div class="col-md-2 box-partner {% if loop.index % 5 == 1 %}col-md-offset-1 col-sm-offset-0{% endif %}">
+                    <a target="_blank" href="{{ datas.url }}">
+                        <img class="img-responsive img-rounded center-block" src="{{ asset('img/partners/'~ datas.img) }}" alt="{{ name }}">
+                    </a>
+                </div>
+            {% if loop.index % 5 == 0 and loop.index > 1 %}</div><div class="clearfix"></div><div class="row row-partners">{% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

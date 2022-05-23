@@ -1,0 +1,64 @@
+{% spaceless %}
+    <div id="small_cart">
+        <div class="triangle"></div>
+        <div class="title">{{ 'cart.title'|trans }} <span class="close-cross">X</span></div>
+        <div class="list">
+            {% set total_price = 0 %}
+            {% for product in products %}
+                {% set total_price = total_price + product.unitPrice %}
+                <div class="element">
+                    <div class="left-part-float">
+                        <div class="close-button">
+                            <a href="{#{ path('cart_remove', { 'product': product.id }) }#}">X</a>
+                        </div>
+                        <a href="{#{ path('product', {'slug': product.seo.url}) }#}">
+                            <div class="image">
+                                {% set image = product.images|first %}
+                                {% if image is defined and image is not null and image.filename is defined and image.filename is not null %}
+                                    <img src="{{ asset(image.filename) }}"/>
+                                {% else %}
+                                    <img src="{{ asset('img/test-swing.png') }}"/>
+                                {% endif %}
+                            </div>
+                        </a>
+                    </div>
+                    <div class="right-part">
+                        <div class="firstline">
+                            <div class="presentation">
+                                <a href="{#{ path('product', {'slug': product.seo.url}) }#}">
+                                    <div class="brand">
+                                        {% if product.firstExtra is defined and product.firstExtra.value is defined %}
+                                            {{ product.firstExtra.value }}
+                                        {% endif %}
+                                    </div>
+                                    <div class="description">{{ product.name }}</div>
+                                </a>
+                            </div>
+                            <div class="pricing">
+                                <div class="price">{#{ product.unitPrice|localizedcurrency(product.currency) }#}</div>
+                            </div>
+                        </div>
+                        <div class="secondline">
+                            <a href="{#{ path('asmotaille_product', {'slug': product.seo.url}) }#}"
+                               class="btn cta2 gotoboutique">
+                                {{ 'cart.gotoboutique'|trans }}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="prices col-md-12">
+            {% if products|length <= 0 %}
+                <div class="no-product row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">{{ 'cart.no_products'|trans }}</div>
+                </div>
+            {% else %}
+                <div class="order-total row">
+                    <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">{{ 'cart.prices.order_total'|trans }}</div>
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 price">{#{ total_price|localizedcurrency('EUR') }#}</div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endspaceless %}
